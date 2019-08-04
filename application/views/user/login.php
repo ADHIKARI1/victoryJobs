@@ -18,6 +18,18 @@
 <section class="login-page light-blue">
             <div class="container">
                 <div class="row">
+                    <?php 
+
+                        if($this->session->flashdata('message')){
+                                    ?>
+                                    <div class="alert alert-info text-center">
+                                        <?php echo $this->session->flashdata('message'); ?>
+                                    </div>
+                                    <?php
+                        }
+
+                    ?>
+
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div id="lresponseDiv" class="alert text-center" style="margin-top:20px; display:none;">
                             <button type="button" class="close" id="lclearMsg"><span aria-hidden="true">&times;</span></button>

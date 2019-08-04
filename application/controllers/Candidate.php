@@ -37,12 +37,12 @@ class Candidate extends CI_Controller
 		$this->load->view('template/footer');
 	}
 
-	public function verify(){
+	/*public function verify(){
 		
 		$this->load->view('template/header');
 		$this->load->view('candidate/verify');
 		$this->load->view('template/footer');
-	}	
+	}	*/
 
 	
 
@@ -114,7 +114,7 @@ class Candidate extends CI_Controller
 
 			if($query)
 			{
-				$this->session->set_flashdata('message', 'User activated successfully');
+				$this->session->set_flashdata('message', 'User activated successfully! Please Login');
 			}
 			else
 			{
@@ -123,10 +123,10 @@ class Candidate extends CI_Controller
 		}
 		else
 		{
-			$this->session->set_flashdata('message', 'Cannot activate account. Code didnt match');
+			$this->session->set_flashdata('message', 'Can"t activate account. Verification code not matched');
 		}
 
-		$this->verify();
+		redirect('user/signin');
 	}
 
 	public function complete()
