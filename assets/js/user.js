@@ -77,7 +77,12 @@ var loginUser = function (){
 								}, 500);
 								window.location.href = 'index';						
 							}
-						}
+						},
+						error: function (response) {
+                        $('#lmessage').html(response.lmessage);
+						$('#logText').html('Login');
+						$('#lresponseDiv').removeClass('alert-success').addClass('alert-danger').show();
+                    	}
 					});
 				};
 				setTimeout(login, 500);

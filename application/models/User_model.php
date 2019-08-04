@@ -15,13 +15,31 @@ class User_model extends CI_Model
 
 	public function login($email, $password)
 	{
-		$result = $this->db->get_where('usr_user', array('user_email' => $email));
-		$db_pass = $result->row()->user_password;
-		if (password_verify($password, $db_pass)) 
-			return $result->row()->ref_emp_id;
-		else
+		try 
+		{
+			$result = $this->db->get_where('usr_user', array('user_email' => $email));
+			if($result == NULL || $result == "")
+			{
+				return false;
+			}
+			else
+			{				
+				if($result->row(3) == NULL || $result->row(3) == "")
+				{
+					return false;
+				}
+				else
+				{
+					$db_pass = $result->row()->user_password;
+					if (password_verify($password, $db_pass)) 
+						return $result->row()->ref_emp_id;
+					else
+						return false;
+				}
+			}
+		} catch (Exception $e) {
 			return false;
-
+		}
 	}
 
 	public function get_user_type($ref_id)
