@@ -26,14 +26,7 @@ class Employer extends CI_Controller
 		{
 			redirect('/');
 		}		
-	}
-
-	public function verify()
-	{		
-		$this->load->view('template/header');
-		$this->load->view('candidate/verify');
-		$this->load->view('template/footer');
-	}
+	}	
 
 	private function mail($email, $password, $id, $code)
 	{
@@ -42,8 +35,8 @@ class Employer extends CI_Controller
 		  		'protocol' => 'smtp',
 		  		'smtp_host' => 'ssl://smtp.googlemail.com',
 		  		'smtp_port' => 465,
-		  		'smtp_user' => 'samithaadikari@gmail.com', 
-		  		'smtp_pass' => '@@Samithabc2011', 
+		  		'smtp_user' => 'jobs@victoryJobs.lk', 
+		  		'smtp_pass' => 'Victory@123', 
 		  		'mailtype' => 'html',
 		  		'charset' => 'iso-8859-1',
 		  		'wordwrap' => TRUE
@@ -207,7 +200,7 @@ class Employer extends CI_Controller
 			$this->session->set_flashdata('message', 'Cannot activate account. Code didnt match');
 		}
 
-		$this->verify();
+		redirect('user/signin');
 	}
 
 	public function complete()

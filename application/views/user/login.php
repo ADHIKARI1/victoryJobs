@@ -22,7 +22,7 @@
 
                         if($this->session->flashdata('message')){
                                     ?>
-                                    <div class="alert alert-info text-center">
+                                    <div id="flashMessage" class="alert alert-info text-center">
                                         <?php echo $this->session->flashdata('message'); ?>
                                     </div>
                                     <?php

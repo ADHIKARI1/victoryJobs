@@ -10,11 +10,11 @@
                             <div class="row clearfix">
                                 <div class="column col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="app-name" placeholder="Applicant Name" value="<?php echo $user[0]['user_fname'].' '.$user[0]['user_lname'] ?>">
+                                        <input type="text" class="form-control" name="app-name" placeholder="Applicant Name" value="<?php echo $user[0]['user_fullname']; ?>">
                                         <input type="hidden"  name = "post-id"  value = "<?php echo $details[0]['post_id']; ?>" >
                                         <input type="hidden"  name = "org-id"  value = "<?php echo $details[0]['ref_emp_id']; ?>" > 
                                         <input type="hidden"  name = "app-user"  value = "<?php echo $user[0]['ref_emp_id']; ?>" >  
-                                        <!-- <input type="hidden"  name="org-email"  value="<?php echo $detail[0]['org_email']; ?>">   -->                                              
+                                        <input type="hidden"  name="org-email"  value= "<?php echo $details[0]['org_email']; ?>">                                            
                                     </div>
                                     <div class="form-group">
                                         <input type="email" class="form-control" name="app-email"  placeholder="Email" value="<?php echo $user[0]['user_email']; ?>">
@@ -23,7 +23,7 @@
                                 <div class="column col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <select name="cv-uploaded" class="select-resume form-control">                                            
-                                            <option value="<?php echo $user[0]['user_email']; ?>" selected>CV Uploaded</option>                                            
+                                            <option value="<?php echo $user[0]['cv_name']; ?>" selected>CV Uploaded</option>                                            
                                         </select>
                                     </div>
                                 </div>
@@ -130,9 +130,6 @@
                                       <source srcset="" type="image/svg+xml">
                                       <img src="<?php echo base_url(); ?>uploads/advertisement/<?php echo $details[0]['post_image']; ?>" class="img-fluid img-thumbnail" alt="Advertisement">
                                     </picture>
-
-
-
                                 </div>
                             </div>
                         </div>

@@ -41,7 +41,6 @@ var createCandidate = function () {
 			$(document).on('click', '#clearMsg', function(){
 			$('#responseDiv').hide();
 		});
-
 			
 		}
 	}
@@ -62,6 +61,9 @@ var loginUser = function (){
 						url: BASE_URL + "user/login",
 						dataType: 'json',
 						data: user,
+						beforeSend: function() {
+							$('#flashMessage').hide();
+						},
 						success: function(response){
 							$('#lmessage').html(response.lmessage);
 							$('#logText').html('Login');
@@ -74,8 +76,9 @@ var loginUser = function (){
 								$('#logForm')[0].reset();	
 								setTimeout(function(){
 									location.reload();
+									window.location.replace(BASE_URL+ "user/index");
 								}, 500);
-								window.location.href = 'index';						
+								//window.location.href = BASE_URL+ "User/index";								
 							}
 						},
 						error: function (response) {

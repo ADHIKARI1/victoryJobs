@@ -113,10 +113,11 @@ class Job_model extends CI_Model
 			$data = array(
 				'ref_post_id' => $job['ref_post_id'],
 	            'ref_emp_id' => $job['ref_emp_id'],
+	            'org_email' => $job['org_email'],
 	            'apply_name' => $job['apply_name'],
 	            'applied_user' => $job['applied_user'],
 				'applied_cv' => $job['applied_cv'],
-				'add_email' => $job['add_email'],
+				'applied_email' => $job['applied_email'],
 				'cover_letter' => $job['cover_letter']				
 			);
 			$this->db->insert('jobs_applied_details', $data);

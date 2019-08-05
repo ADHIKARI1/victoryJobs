@@ -35,16 +35,7 @@ class Candidate extends CI_Controller
 		$this->load->view('template/header');
 		$this->load->view('candidate/register');
 		$this->load->view('template/footer');
-	}
-
-	/*public function verify(){
-		
-		$this->load->view('template/header');
-		$this->load->view('candidate/verify');
-		$this->load->view('template/footer');
-	}	*/
-
-	
+	}	
 
 	private function mail($email, $password, $id, $code)
 	{
@@ -90,9 +81,6 @@ class Candidate extends CI_Controller
 		    	return true;
 		    else
 		    	return false;
-		    
-
-
 	}	
 
 	public function activate()
