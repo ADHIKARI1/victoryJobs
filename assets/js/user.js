@@ -76,7 +76,7 @@ var loginUser = function (){
 								$('#logForm')[0].reset();	
 								setTimeout(function(){
 									location.reload();
-									window.location.replace(BASE_URL+ "user/index");
+									window.location.href = BASE_URL+ "User/index";
 								}, 500);
 								//window.location.href = BASE_URL+ "User/index";								
 							}

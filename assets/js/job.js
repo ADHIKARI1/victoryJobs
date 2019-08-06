@@ -46,8 +46,14 @@ return{
 					dataType:'json',
 					processData: false,
         			contentType: false,
-					url: BASE_URL + "job/applyjob",				
-					success: function(response){					
+					url: BASE_URL + "job/applyjob",	
+					beforeSend: function() {				       
+				       $('body').css('cursor', 'wait');
+				       $("#jobApplyBtn").attr("disabled", true);
+				   },			
+					success: function(response){	
+						$('body').css('cursor', 'default');
+				       	$("#jobApplyBtn").attr("disabled", false);				
 						$('#message').html(response.message);
 						if(response.error)
 						{

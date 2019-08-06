@@ -14,7 +14,8 @@
                                         <input type="hidden"  name = "post-id"  value = "<?php echo $details[0]['post_id']; ?>" >
                                         <input type="hidden"  name = "org-id"  value = "<?php echo $details[0]['ref_emp_id']; ?>" > 
                                         <input type="hidden"  name = "app-user"  value = "<?php echo $user[0]['ref_emp_id']; ?>" >  
-                                        <input type="hidden"  name="org-email"  value= "<?php echo $details[0]['org_email']; ?>">                                            
+                                        <input type="hidden"  name="org-email"  value= "<?php echo $details[0]['org_email']; ?>">  
+                                        <input type="hidden"  name="post-title"  value= "<?php echo $details[0]['post_title']; ?>">                                          
                                     </div>
                                     <div class="form-group">
                                         <input type="email" class="form-control" name="app-email"  placeholder="Email" value="<?php echo $user[0]['user_email']; ?>">
@@ -49,7 +50,7 @@
                                 </div>
                                 <div class="col-md-12 col-xs-12">
                                     <div class="text-center">                                        
-                                            <button type="submit" name="submit" class="btn btn-default btn-block">Apply Now</button>                                        
+                                            <button id="jobApplyBtn" type="submit" name="submit" class="btn btn-default btn-block">Apply Now</button>                                        
                                     </div>
                                 </div>
                             </div>

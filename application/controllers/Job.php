@@ -13,16 +13,15 @@ class Job extends CI_Controller
 
 	public function viewjob($id)
 	{			
+		$data['details'] = $this->Job_model->get_post_by_id($id);
 		if($this->session->userdata('userid_mko789') !== null && $this->session->userdata('userid_mko789') != "")
 		{
-			$user = $this->session->userdata('userid_mko789');
-			$data['details'] = $this->Job_model->get_post_by_id($id);
+			$user = $this->session->userdata('userid_mko789');			
 			$data['user'] = $this->Candidate_model->get_user_basic_detail($user);
-
-			$this->load->view('template/header');
-			$this->load->view('job/viewjob', $data);
-			$this->load->view('template/footer');
-		}			
+		}
+		$this->load->view('template/header');
+		$this->load->view('job/viewjob', $data);
+		$this->load->view('template/footer');					
 	}
 
 	public function postjob()
@@ -47,11 +46,54 @@ class Job extends CI_Controller
 		}		
 	}
 
+	private function mail($post_id, $title, $org_email)
+	{
+		//set up email
+			$config = array(
+		  		'protocol' => 'smtp',
+		  		'smtp_host' => 'ssl://smtp.googlemail.com',
+		  		'smtp_port' => 465,
+		  		'smtp_user' => 'jobs@victoryJobs.lk', 
+		  		'smtp_pass' => 'Victory@123', 
+		  		'mailtype' => 'html',
+		  		'charset' => 'iso-8859-1',
+		  		'wordwrap' => TRUE
+			);
+
+			$message = 	"
+						<html>
+						<head>
+							<title>Alert</title>
+						</head>
+						<body>
+							<h2>Hi,</h2>						
+							<p>There is a new candidate for job post REF to #".$post_id." and the positin of ".$title." .</p>							
+							<br>							
+							<h5>Best Regards</h5>
+							<p>victoryJobs-Team</p>							
+						</body>
+						</html>
+						";
+
+			$this->load->library('email', $config);
+		    $this->email->set_newline("\r\n");
+		    $this->email->from($config['smtp_user'], 'noreply@victoryJobs.com');
+		    $this->email->to($org_email);
+		    $this->email->subject('victoryJobs - Notification');
+		    $this->email->message($message);
+
+		    //sending email
+		    if ($this->email->send())
+		    	return true;
+		    else
+		    	return false;
+	}
+
 	public function applyjob()
 	{		
 		$output = array('error' => false);
 		$this->form_validation->set_rules('app-name', 'Apply Name', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('input-file-preview', 'Upload Cv', 'trim|xss_clean');
+		$this->form_validation->set_rules('input-file-preview', 'Upload CV', 'trim|xss_clean');
 		$this->form_validation->set_rules('cover', 'Cover Latter', 'trim|xss_clean');
 		
 		
@@ -105,16 +147,26 @@ class Job extends CI_Controller
 				$job['applied_email'] = $_POST['app-email'];
 				$job['cover_letter'] = $_POST['cover'];
 				
-				$query = $this->Job_model->apply($job);				
-
-				if ($query) 
+					
+				$status = $this->mail($_POST['post-id'], $_POST['post-title'], $_POST['org-email']);			
+				if($status)
 				{
-					$output['message'] = 'Successfully Applied for the job..';					
-				}			
+					$query = $this->Job_model->apply($job);
+					if ($query) 
+					{
+
+						$output['message'] = 'Successfully Applied for the job..';					
+					}			
+					else
+					{
+						$output['error'] = true;
+						$output['message'] = 'Application Process Failed, Something went Wrong!';
+					}
+				}
 				else
 				{
 					$output['error'] = true;
-					$output['message'] = 'Application Process Failed, Something went Wrong!';
+					$output['message'] = 'Something went wrong! Please try again..';
 				}
 			}
 		}
