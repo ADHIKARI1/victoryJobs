@@ -26,6 +26,27 @@ class Employer extends CI_Controller
 		{
 			redirect('/');
 		}		
+	}
+
+	public function edit()
+	{
+		if ($this->session->userdata('islogged_mko789') && $this->session->userdata('idtype_mko789') == 3) 
+		{	
+			$data['districts'] = $this->Job_model->get_districts();
+			$data['locations'] = $this->Job_model->get_cities();
+			$data['industries'] = $this->Job_model->get_job_industries();
+			$user_id = $this->session->userdata('userid_mko789');
+			$data['organization'] = $this->Employer_model->get_employer($user_id);
+			
+
+			$this->load->view('template/header');
+			$this->load->view('employer/edit', $data);
+			$this->load->view('template/footer');
+		}
+		else
+		{
+			redirect('/');
+		}		
 	}	
 
 	private function mail($email, $password, $id, $code)

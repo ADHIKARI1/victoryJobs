@@ -13,6 +13,15 @@ class Employer_model extends CI_Model
 		$this->load->database(); 
 	}
 
+	public function get_employer($id){
+		try {
+			$query = $this->db->get_where('org_basic',array('ref_org_id'=>$id));
+			return $query->row_array();
+		} catch (Exception $e) {
+			return false;
+		}
+	}
+
 	public function get_user($id){
 		try {
 			$query = $this->db->get_where('usr_user',array('ref_emp_id'=>$id));
