@@ -243,7 +243,7 @@ var createEmployer = function (){
 }();
 
 
-var employerUpdateProfile = function(){
+var employerCreateProfile = function(){
 	return {
 		init: function(){
 			$('#empCreateProfileForm').submit(function(e){
@@ -277,11 +277,46 @@ var employerUpdateProfile = function(){
 	}
 }();
 
+var employerUpdateProfile = function(){
+	return {
+		init: function(){
+			$('#empUpdateProfileForm').submit(function(e){
+				e.preventDefault();
+				var form_data = new FormData($('#empUpdateProfileForm')[0]);
+				$.ajax({
+					type:"POST",
+					data: form_data,
+					dataType: 'json',
+					url: BASE_URL + 'employer/update_employer',
+					processData : false,
+					contentType: false,
+					success: function(response){
+						$('#message').html(response.message);
+						if(response.error)
+						{
+							$('#responseDiv').removeClass('alert-success').addClass('alert-danger').show();
+						}
+						else
+						{
+							$('#responseDiv').removeClass('alert-danger').addClass('alert-success').show();
+							$('#empUpdateProfileForm')[0].reset();
+						}
+					}
+				});
+			});
+			$(document).on('click', '#clearMsg', function(){
+			$('#responseDiv').hide();
+			});
+		}
+	}
+}();
+
 jQuery(document).ready(function(){
 	createCandidate.init();
 	loginUser.init();
 	candidateFilteringProfile.init();
 	candidateUpdateProfile.init();
 	createEmployer.init();
+	employerCreateProfile.init();
 	employerUpdateProfile.init();
 });

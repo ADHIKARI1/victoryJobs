@@ -128,8 +128,14 @@ class Job_model extends CI_Model
 			return false;
 		}
 		
-	}	
+	}
 
+	public function get_cvs_by_org_id($org_id)
+	{
+		$query = $this->db->query("CALL get_cvs_by_org_id('$org_id')");
+        mysqli_next_result($this->db->conn_id);
+        return $query->result_array();		
+	}
 
 }
 

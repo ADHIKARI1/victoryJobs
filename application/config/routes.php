@@ -52,5 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['job/view/(:any)'] = 'job/viewjob/$1';
 $route['default_controller'] = 'Pages/view';
+$route['contact'] = 'Pages/view/contact';
+$route['aboutus'] = 'Pages/view/aboutus';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

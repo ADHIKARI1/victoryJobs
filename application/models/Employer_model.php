@@ -106,7 +106,8 @@ class Employer_model extends CI_Model
 		} catch (Exception $e) {
 			return false;
 		}
-	}
+	}	
+
 
 }
 

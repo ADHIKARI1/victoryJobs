@@ -1,38 +1,4 @@
-        <section class="job-breadcrumb">
-            <div class="container">
-                <div class="row">                    
-                    <div class="col-md-6 col-sm-7 co-xs-12 text-left">
-                        <h3>Recruiter profile</h3>
-                    </div>
-                    <div class="col-md-6 col-sm-5 co-xs-12 text-right">
-                        <div class="bread">
-                            <ol class="breadcrumb">
-                                <li><a href="#">Home</a> </li>
-                                <li class="active">edit profile</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="dashboard-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="col-md-4 col-sm-4 col-xs-12">                            
-                            <div class="profile-nav">
-                                <div class="panel">
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <li>
-                                            <a href="user-dashboard.html"> <i class="fa fa-user"></i> Profile</a>
-                                        </li>
-                                        <li class="active">
-                                            <a href="user-edit-profile.html"> <i class="fa fa-edit"></i> Edit Profile</a>
-                                        </li>                                                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="col-md-8 col-sm-8 col-xs-12">
                             <div id="responseDiv" class="alert text-center" style="margin-top:20px; display:none;">
                                 <button type="button" class="close" id="clearMsg"><span aria-hidden="true">&times;</span></button>
@@ -43,7 +9,7 @@
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
                                 <div class="profile-edit row">
-                                    <form id="empCreateProfileForm" enctype="multipart/form-data">
+                                    <form id="empUpdateProfileForm" enctype="multipart/form-data">
                                          <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Select Industry <span class="required">*</span></label>
@@ -132,27 +98,5 @@
             </div>
         </section>       
 
-        <div class="modal add-resume-modal" tabindex="-1" role="dialog" aria-labelledby="">
-            <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Add New Resume</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Title <span class="required">*</span></label>
-                            <input type="text" placeholder="" class="form-control">
-                        </div>
-                        <input type="file" class="">
-                        <p>Only pdf and doc files are accepted</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <a href="#" type="button" class="btn btn-primary">Save Resume</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
         

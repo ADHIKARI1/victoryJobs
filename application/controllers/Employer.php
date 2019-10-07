@@ -9,6 +9,23 @@ class Employer extends CI_Controller
 	{
 		parent::__construct();
 	}
+
+	public function resumes()
+	{	
+
+		if ($this->session->userdata('userid_mko789') !== NULL && $this->session->userdata('userid_mko789') != "" && $this->session->userdata('idtype_mko789') == 3)
+			$org_id = $this->session->userdata('userid_mko789');
+		else
+			redirect('/');
+
+		$data['resumes'] = $this->Job_model->get_cvs_by_org_id($org_id);
+
+		$this->load->view('template/header');
+		$this->load->view('employer/emp-profile-nav');
+		$this->load->view('employer/resumes', $data);
+		$this->load->view('template/footer');
+
+	}
 	
 	public function profile()	
 	{
@@ -19,6 +36,7 @@ class Employer extends CI_Controller
 			$data['industries'] = $this->Job_model->get_job_industries();
 
 			$this->load->view('template/header');
+			$this->load->view('employer/emp-profile-nav');
 			$this->load->view('employer/profile', $data);
 			$this->load->view('template/footer');
 		}
@@ -40,6 +58,7 @@ class Employer extends CI_Controller
 			
 
 			$this->load->view('template/header');
+			$this->load->view('employer/emp-profile-nav');
 			$this->load->view('employer/edit', $data);
 			$this->load->view('template/footer');
 		}
@@ -285,6 +304,91 @@ class Employer extends CI_Controller
 	            $user['org_ind_id'] = $_POST['org-industry'];
 	            $user['org_district_id'] = $_POST['preferDistrict'];		
 	            $user['org_city_id'] = $_POST['preferLocation'];	
+	            $user['org_address'] = $_POST['address'];	
+	            $user['org_mobile'] = $_POST['mobile'];
+	            $user['contact_email'] = $_POST['office-email'];	
+	            $user['org_contact_person'] = $_POST['contact-person'];	
+	            $user['no_of_vacancies'] = $_POST['no-of-vacancy'];
+	            $user['org_logo'] = $logo;         
+
+	            $query_user = $this->Employer_model->complete_user($user);
+
+	            if ($query_user) 
+				{
+					$output['message'] = 'Profile Details Updated successfully';				
+				}			
+				else
+				{
+					$output['error'] = true;
+					$output['message'] = 'Something Went Wrong!Try Agian';
+				}
+			}
+		}
+		echo json_encode($output);	
+		
+	}
+
+	public function update_employer()
+	{
+		if ($this->session->userdata('userid_mko789') !== NULL && $this->session->userdata('userid_mko789') != "")
+			$user_id = $this->session->userdata('userid_mko789');
+		else
+			redirect('/');
+		
+
+		$output = array('error' => false);
+		$this->form_validation->set_rules('org-industry', 'Organization Industry', 'xss_clean|required');
+		$this->form_validation->set_rules('preferDistrict', 'District', 'xss_clean|required');
+		$this->form_validation->set_rules('preferLocationN', 'Location', 'xss_clean|required');
+		$this->form_validation->set_rules('address', 'Address', 'trim|xss_clean|required');
+		$this->form_validation->set_rules('contact-person', 'Contact Person', 'trim|xss_clean|required');
+		$this->form_validation->set_rules('mobile', 'Mobile', 'xss_clean|regex_match[/^[0-9]{10}$/]');
+		$this->form_validation->set_rules('office-email', 'Email', 'trim|xss_clean|valid_email');
+		$this->form_validation->set_rules('no-of-vacancy', 'No Of Vacancies', 'trim|xss_clean');
+		$this->form_validation->set_rules('input-file-preview', 'Logo Upload', 'trim|xss_clean');
+
+		if ($this->form_validation->run() == false) 
+		{
+			$output['error'] = true;
+			$output['message'] = validation_errors();
+		}
+		else
+		{
+			$logo = "";
+			if (!empty($_FILES['input-file-preview']['name'])) 
+			{			
+				$file_name = rand(0,1000).time();
+                $config['upload_path'] = 'uploads/logo/';
+                $config['upload_url']  = base_url().'uploads/logo/';
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config['file_name'] = $file_name;                
+                
+                //Load upload library and initialize configuration
+                $this->load->library('upload',$config);
+                $this->upload->initialize($config);
+
+                if($this->upload->do_upload('input-file-preview'))
+                {
+                    $uploadData = $this->upload->data();
+                    $logo = $uploadData['file_name'];
+                }
+                else
+                {
+                	$output['error'] = true;
+					$output['message'] = $this->upload->display_errors();                	
+                }         
+			}
+			else
+			{
+				$logo = "";
+			}  
+
+			if ($output['error'] == false) 
+			{		          
+	            $user['ref_org_id'] = $user_id;	
+	            $user['org_ind_id'] = $_POST['org-industry'];
+	            $user['org_district_id'] = $_POST['preferDistrict'];		
+	            $user['org_city_id'] = $_POST['preferLocationN'];	
 	            $user['org_address'] = $_POST['address'];	
 	            $user['org_mobile'] = $_POST['mobile'];
 	            $user['contact_email'] = $_POST['office-email'];	
