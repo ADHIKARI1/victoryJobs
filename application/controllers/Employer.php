@@ -19,24 +19,33 @@ class Employer extends CI_Controller
 			redirect('/');
 
 		$data['resumes'] = $this->Job_model->get_cvs_by_org_id($org_id);
+		$data['organization'] = $this->Employer_model->get_employer($org_id);
+		$data['status'] = $this->Employer_model->get_status($org_id);
 
 		$this->load->view('template/header');
-		$this->load->view('employer/emp-profile-nav');
+		$this->load->view('employer/emp-profile-nav', $data);
 		$this->load->view('employer/resumes', $data);
 		$this->load->view('template/footer');
-
 	}
 	
 	public function profile()	
 	{
+		
+		if ($this->session->userdata('userid_mko789') !== NULL && $this->session->userdata('userid_mko789') != "" && $this->session->userdata('idtype_mko789') == 3)
+			$org_id = $this->session->userdata('userid_mko789');
+		else
+			redirect('/');
+		
 		if ($this->session->userdata('islogged_mko789') && $this->session->userdata('idtype_mko789') == 3) 
 		{			
 			$data['districts'] = $this->Job_model->get_districts();
 			$data['locations'] = $this->Job_model->get_cities();
 			$data['industries'] = $this->Job_model->get_job_industries();
+			$data['organization'] = $this->Employer_model->get_employer($org_id);
+			$data['status'] = $this->Employer_model->get_status($org_id);
 
 			$this->load->view('template/header');
-			$this->load->view('employer/emp-profile-nav');
+			$this->load->view('employer/emp-profile-nav', $data);
 			$this->load->view('employer/profile', $data);
 			$this->load->view('template/footer');
 		}
@@ -48,6 +57,11 @@ class Employer extends CI_Controller
 
 	public function edit()
 	{
+		if ($this->session->userdata('userid_mko789') !== NULL && $this->session->userdata('userid_mko789') != "" && $this->session->userdata('idtype_mko789') == 3)
+			$org_id = $this->session->userdata('userid_mko789');
+		else
+			redirect('/');
+
 		if ($this->session->userdata('islogged_mko789') && $this->session->userdata('idtype_mko789') == 3) 
 		{	
 			$data['districts'] = $this->Job_model->get_districts();
@@ -55,10 +69,11 @@ class Employer extends CI_Controller
 			$data['industries'] = $this->Job_model->get_job_industries();
 			$user_id = $this->session->userdata('userid_mko789');
 			$data['organization'] = $this->Employer_model->get_employer($user_id);
+			$data['status'] = $this->Employer_model->get_status($org_id);
 			
 
 			$this->load->view('template/header');
-			$this->load->view('employer/emp-profile-nav');
+			$this->load->view('employer/emp-profile-nav', $data);
 			$this->load->view('employer/edit', $data);
 			$this->load->view('template/footer');
 		}

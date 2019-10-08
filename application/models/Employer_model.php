@@ -13,6 +13,20 @@ class Employer_model extends CI_Model
 		$this->load->database(); 
 	}
 
+	public function get_status($id){
+		try {
+			$query = $this->db->get_where('org_basic',array('ref_org_id'=>$id, 'is_finished'=>1));
+			$exist = $query->row_array();
+			if ($exist !== null || $exist != "")
+				return true;
+			else
+				return false;
+			
+		} catch (Exception $e) {
+			return false;
+		}
+	}
+
 	public function get_employer($id){
 		try {
 			$query = $this->db->get_where('org_basic',array('ref_org_id'=>$id));

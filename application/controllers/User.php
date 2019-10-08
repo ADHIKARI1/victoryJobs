@@ -19,7 +19,12 @@ class User extends CI_Controller
 		}
 		else if($this->session->userdata('islogged_mko789') && $this->session->userdata('idtype_mko789') == 3)
 		{
-			redirect('employer/profile');
+			$org_id = $this->session->userdata('userid_mko789');
+			$status = $this->Employer_model->get_status($org_id);
+			if ($status) 
+				redirect('employer/edit');
+			else
+				redirect('employer/profile');
 		}
 		else
 		{

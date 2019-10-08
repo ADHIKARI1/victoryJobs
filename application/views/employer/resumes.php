@@ -9,8 +9,8 @@
                                             <tr>
                                                 <th>Sr. #</th>
                                                 <th>Applicant Mail</th>
-                                                <th>Remove</th>
-                                                <th>Delete</th>
+                                                <th>View</th>
+                                                <!-- <th>Delete</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -24,7 +24,7 @@
                                                 <td>
                                                     <h5><?php echo  $resume['user_email']; ?></h5></td>
                                                 <td><a class="btn btn-primary" href="<?php echo base_url(); ?>uploads/cv/<?php echo  $resume['applied_cv']; ?>"> Download </a></td>
-                                                <td><a class="btn btn-danger" href="#"> Delete </a></td>
+                                                <!-- <td><a class="btn btn-danger" href="#"> Delete </a></td> -->
                                             </tr>      
                                             <?php
                                              $count++;

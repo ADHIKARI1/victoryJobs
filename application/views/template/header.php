@@ -84,7 +84,7 @@
                 </li>
                 <?php else: ?>
                 <li class="profile-pic">
-                        <a href="javascript:void(0)"> <img src="<?php echo base_url(); ?>assets/images/admin.jpg" alt="user-img" class="img-circle" width="36"><span class="hidden-xs hidden-sm">Arslan </span><i class="fa fa-angle-down fa-indicator"></i> </a>
+                        <a href="javascript:void(0)"> <img src="<?php echo base_url(); ?>assets/images/admin.jpg" alt="user-img" class="img-circle" width="36"><span class="hidden-xs hidden-sm">Welcome! </span><i class="fa fa-angle-down fa-indicator"></i> </a>
                         <ul class="drop-down-multilevel left-side">
                             <?php if ($this->session->userdata('islogged_mko789') && $this->session->userdata('idtype_mko789') == 2): ?>
                                 <li><a href="<?php echo base_url(); ?>candidate/profile"><i class="fa fa-user"></i> My Profile</a></li> 

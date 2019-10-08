@@ -25,18 +25,21 @@
                                     <img class="img-responsive center-block" src="<?php echo base_url(); ?>assets/images/company/logo1.jpg" alt="Image">
                                 </div>
                                 <div class="text-center dashboard-logo-sidebar-title">
-                                    <h4>Your Company Agency Pvt. Ltd</h4>
-                                </div>
+                                    <h4><?php echo $organization['org_name'];?></h4>
+                                </div>      
                             </div>                           
                             <div class="profile-nav">
                                 <div class="panel">
                                     <ul class="nav nav-pills nav-stacked">
+                                        <?php if(!$status): ?>
                                         <li class="active">
                                             <a href="<?php echo base_url(); ?>employer/profile"> <i class="fa fa-user"></i> Profile</a>
-                                        </li>
-                                        <li >
+                                        </li >
+                                    <?php else: ?>
+                                        <li class="active">
                                             <a href="<?php echo base_url(); ?>employer/edit"> <i class="fa fa-edit"></i> Edit Profile</a>
                                         </li> 
+                                    <?php endif; ?>
                                         <li>
                                             <a href="<?php echo base_url(); ?>employer/resumes"> <i class="fa fa-file-o"></i>Resume </a>
                                         </li>                                                                       

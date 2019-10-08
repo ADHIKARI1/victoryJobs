@@ -66,16 +66,16 @@
                             <div class="contact_block">
                                 <h4>Contact Information</h4>
                                 <ul class="personal-info">
-                                    <li><i class="fa fa-map-marker"></i> 3rd Floor,Link Arcade Model Town, BBL, USA.</li>
-                                    <li><i class="fa fa-envelope"></i> Support@domain.com</li>
-                                    <li><i class="fa fa-phone"></i> (0092)+ 124 45 78 678 </li>
-                                    <li><i class="fa fa-clock-o"></i> Mon - Sun: 8:00 - 16:00</li>
+                                    <li><i class="fa fa-map-marker"></i> No 26 8th Ln, Sri Jayawardenepura Kotte 11222.</li>
+                                    <li><i class="fa fa-envelope"></i> jobs@victoryinformation.lk</li>
+                                    <li><i class="fa fa-phone"></i> (+94) 76 22 20 858</li>
+                                    <li><i class="fa fa-clock-o"></i> Always </li>
                                 </ul>
                                 <ul class="social-network social-circle">
-                                    <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="https://www.facebook.com/victoryjobs.lk/" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
                                     <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/in/victory-jobs-bab156190/" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
                                 </ul>
                             </div>
                         </div>
