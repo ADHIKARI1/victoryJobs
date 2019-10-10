@@ -11,6 +11,36 @@ class Job extends CI_Controller
 		parent::__construct();
 	}
 
+	public function index()
+	{
+		$config = array();
+        $config["base_url"] = base_url() . "jobs";
+        $config["total_rows"] = $this->Job_model->get_count();
+        $config["per_page"] = 5;
+        $config["uri_segment"] = 2;
+
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
+        $data["links"] = $this->pagination->create_links();
+
+        $data['jobs'] = $this->Job_model->get_jobs($config["per_page"], $page);
+
+        $this->load->view('template/header');        
+        $this->load->view('job/index', $data);
+        $this->load->view('template/footer');
+	}
+
+	public function search()
+	{
+		$data['jobs'] = $this->Job_model->get_search();
+		$data['categories'] = $this->Job_model->get_job_category();
+
+		$this->load->view('template/header');
+		$this->load->view('pages/search');
+        $this->load->view('job/index', $data);
+        $this->load->view('template/footer');
+	}
+
 	public function viewjob($id)
 	{			
 		$data['details'] = $this->Job_model->get_post_by_id($id);

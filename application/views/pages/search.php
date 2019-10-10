@@ -29,14 +29,15 @@
                 <div class="col-md-10 col-sm-12 col-md-offset-1 col-xs-12 nopadding">
                     <div class="search-form-contaner">
                         <h1 class="search-main-title"> Ten million success stories. Start yours today </h1>
-                        <form class="form-inline">
+                        <form class="form-inline" method="post" action = "<?php echo base_url(); ?>job/search">
+                            <div class="col-md-3 col-sm-3 col-xs-12 nopadding"></div>
                             <div class="col-md-4 col-sm-4 col-xs-12 nopadding">
-                                <div class="form-group">
-                                    
-                                    <input type="text" class="form-control" name="keyword" placeholder="Search Keyword" value="">
+                                <div class="form-group">                                    
+                                    <input type="text" class="form-control" name="keyword" id="search" placeholder="Search Keyword" value="">
                                     <i class="icon-magnifying-glass"></i>
                                 </div>
-                            </div>
+                            </div>  
+                            <!--                          
                             <div class="col-md-3 col-sm-3 col-xs-12 nopadding">
                                 <div class="form-group">
                                     <select class="select-category form-control">
@@ -53,6 +54,7 @@
                                     </select>
                                 </div>
                             </div>
+                            
                             <div class="col-md-3 col-sm-3 col-xs-12 nopadding">
                                 <div class="form-group">
                                     <select class="select-location form-control">
@@ -66,9 +68,10 @@
                                     </select>
                                 </div>
                             </div>
+                        -->
                             <div class="col-md-2 col-sm-2 col-xs-12 nopadding">
                                 <div class="form-group form-action">
-                                    <button type="button" class="btn btn-default btn-search-submit">Search <i class="fa fa-angle-right"></i> </button>
+                                    <button type="submit" class="btn btn-default btn-search-submit">Search <i class="fa fa-angle-right"></i> </button>
                                 </div>
                             </div>
                         </form>

@@ -5,13 +5,55 @@
 */
 class Job_model extends CI_Model
 {
-	
+	protected $table = 'get_jobs_for_home';
+
 	function __construct()
 	{
 		parent::__construct();
 		//load databse connection
 		$this->load->database();
 	}
+
+	public function get_search()
+	{
+		$match = $this->input->post('keyword');
+		$stored_proc = "CALL search_jobs(?, ?)";
+        $data = array('post_title' => $match, 'post_overview' => $match);
+        $result = $this->db->query($stored_proc, $data);
+        mysqli_next_result( $this->db->conn_id );
+        
+        return $result->result_array();
+
+	}
+
+	public function get_count() {
+       // return $this->db->count_all($this->table);
+		$query = $this->db->query("CALL get_jobs_for_home()");
+        mysqli_next_result($this->db->conn_id);
+        return $query->num_rows();
+    }
+
+    public function get_jobs($limit, $start){
+        /*$this->db->limit($limit, $start);
+        $query = $this->db->get($this->table);
+        $rows =  $query->result();
+
+        if ($query->num_rows() > 0) {
+            foreach ($rows as $row) {
+                $data[] = $row;
+            }
+             
+            return $data;
+        }
+ 
+        return false;*/
+
+        $this->db->limit($limit, $start);
+        $query = $this->db->query("CALL get_jobs_for_home()");
+        mysqli_next_result($this->db->conn_id);
+        return $query->result_array();
+
+    }
 
 	public function get_job_industries()
 	{
@@ -64,9 +106,17 @@ class Job_model extends CI_Model
 
 	public function get_posts_home()
 	{
-		$query = $this->db->query("CALL get_jobs_for_home()");
+		$query = $this->db->query("CALL get_jobs_for_home()", 5);		
         mysqli_next_result($this->db->conn_id);
-        return $query->result_array();		
+        return $query->result_array();
+
+        /*$query = "(SELECT job_post.post_id, job_post.post_title, job_post.post_overview,job_post.post_description, job_type.type_name, ";
+		$query = $query."org_basic.org_logo, org_basic.org_name ";
+		$query = $query."FROM job_post LEFT JOIN job_type ON job_post.post_type = job_type.type_id ";
+		$query = $query. "LEFT JOIN job_city ON job_post.post_city_id = job_city.city_id ";
+		$query = $query. "LEFT JOIN org_basic ON job_post.ref_emp_id = org_basic.ref_org_id ORDER BY job_post.post_id DESC LIMIT 10)";
+		$rows  = $this->db->query($query);
+		$rows->result_array();*/
 	}
 
 	public function get_post_by_id($post_id)

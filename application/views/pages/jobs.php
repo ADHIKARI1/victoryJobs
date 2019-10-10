@@ -35,7 +35,11 @@
                                 </div> 
                             <?php endforeach; ?>
                             </div>
-
+                           <!-- <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="load-more-btn">
+                                   <a href="<?php echo base_url(); ?>job/index"><button class="btn-default"> View All <i class="fa fa-angle-right"></i> </button></a> 
+                                </div>
+                            </div> -->
 
                             <!--<div class="col-md-12 col-sm-12 col-xs-12 nopadding">
                                 <div class="pagination-box clearfix">
@@ -64,7 +68,7 @@
                                         <li> <a href="#"> <?php echo $category['job_cat_name'] ?></a></li>
                                         <?php endforeach; ?>                                        
                                     </ul>
-                                </div>                              
+                                </div>            
 
                             </aside>
                         </div>
