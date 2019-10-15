@@ -3,7 +3,7 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
                         <div class="col-md-8 col-sm-12 col-xs-12">
-                            <h4 class="search-result-text">Available job(s)</h4>
+                            <!-- <h4 class="search-result-text">Available job(s)</h4> -->
                         </div>
                         <div class="col-md-8 col-sm-12 col-xs-12">
                             <div class="all-jobs-list-box">
@@ -35,9 +35,9 @@
                                 </div> 
                             <?php endforeach; ?>
                             </div>
-                           <!-- <div class="col-md-12 col-sm-12 col-xs-12">
+                          <!-- <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="load-more-btn">
-                                   <a href="<?php echo base_url(); ?>job/index"><button class="btn-default"> View All <i class="fa fa-angle-right"></i> </button></a> 
+                                   <a href="<?php echo base_url(); ?>job/index/1"><button class="btn-default"> View All <i class="fa fa-angle-right"></i> </button></a> 
                                 </div>
                             </div> -->
 
@@ -65,7 +65,7 @@
                                     <div class="widget-heading"><span class="title">Categories</span></div>
                                     <ul class="categories-module">
                                         <?php  foreach($categories as $category): ?>
-                                        <li> <a href="#"> <?php echo $category['job_cat_name'] ?></a></li>
+                                        <li> <a href="#"> <?php echo $category['job_cat_name'].' ('.$category['job_count'].')'?></a></li>
                                         <?php endforeach; ?>                                        
                                     </ul>
                                 </div>            

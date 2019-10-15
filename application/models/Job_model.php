@@ -5,7 +5,7 @@
 */
 class Job_model extends CI_Model
 {
-	protected $table = 'get_jobs_for_home';
+	protected $table = 'job_post';
 
 	function __construct()
 	{
@@ -26,14 +26,16 @@ class Job_model extends CI_Model
 
 	}
 
-	public function get_count() {
-       // return $this->db->count_all($this->table);
-		$query = $this->db->query("CALL get_jobs_for_home()");
+	public function get_count() 
+	{
+        return $this->db->count_all($this->table);
+		/*$query = $this->db->query("CALL get_jobs_for_home()");
         mysqli_next_result($this->db->conn_id);
-        return $query->num_rows();
+        return $query->num_rows();*/
     }
 
-    public function get_jobs($limit, $start){
+    public function get_jobs($from, $size)
+    {
         /*$this->db->limit($limit, $start);
         $query = $this->db->get($this->table);
         $rows =  $query->result();
@@ -47,12 +49,30 @@ class Job_model extends CI_Model
         }
  
         return false;*/
+        
+		$stored_proc = "CALL get_posts_limit(?, ?)";
+        $data = array('page_from' => $from, 'page_size' => $size);
+        $result = $this->db->query($stored_proc, $data);
+        mysqli_next_result( $this->db->conn_id );
 
-        $this->db->limit($limit, $start);
-        $query = $this->db->query("CALL get_jobs_for_home()");
+        return $result->result_array();
+
+    }
+
+    public function job_count_category()
+    {
+    	/*$this->db->select('job_category.job_cat_id as job_cat_id, job_category.job_cat_name as job_cat_name, COUNT(job_post.post_category) as categories_count');
+		$this->db->from('job_category');
+		$this->db->join('job_post', 'job_category.job_cat_id = job_post.post_category');
+		$this->db->where(array('job_post.post_category !=' => null, 'job_category.job_cat_id != ' => NULL));
+		$this->db->group_by('job_post.post_category');
+		$query = $this->db->get();
+
+		return $query->result_array();*/
+
+		$query = $this->db->query("CALL get_category_with_count()");
         mysqli_next_result($this->db->conn_id);
         return $query->result_array();
-
     }
 
 	public function get_job_industries()
@@ -106,17 +126,13 @@ class Job_model extends CI_Model
 
 	public function get_posts_home()
 	{
-		$query = $this->db->query("CALL get_jobs_for_home()", 5);		
-        mysqli_next_result($this->db->conn_id);
-        return $query->result_array();
+		
+        $stored_proc = "CALL get_posts_limit(?, ?)";
+        $data = array('page_from' => 0, 'page_size' => 5);
+        $result = $this->db->query($stored_proc, $data);
+        mysqli_next_result( $this->db->conn_id );
 
-        /*$query = "(SELECT job_post.post_id, job_post.post_title, job_post.post_overview,job_post.post_description, job_type.type_name, ";
-		$query = $query."org_basic.org_logo, org_basic.org_name ";
-		$query = $query."FROM job_post LEFT JOIN job_type ON job_post.post_type = job_type.type_id ";
-		$query = $query. "LEFT JOIN job_city ON job_post.post_city_id = job_city.city_id ";
-		$query = $query. "LEFT JOIN org_basic ON job_post.ref_emp_id = org_basic.ref_org_id ORDER BY job_post.post_id DESC LIMIT 10)";
-		$rows  = $this->db->query($query);
-		$rows->result_array();*/
+        return $result->result_array();       
 	}
 
 	public function get_post_by_id($post_id)

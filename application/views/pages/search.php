@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-md-10 col-sm-12 col-md-offset-1 col-xs-12 nopadding">
                     <div class="search-form-contaner">
-                        <h1 class="search-main-title"> Ten million success stories. Start yours today </h1>
+                        <h1 class="search-main-title"> Our talent is finding yours.... </h1>
                         <form class="form-inline" method="post" action = "<?php echo base_url(); ?>job/search">
                             <div class="col-md-3 col-sm-3 col-xs-12 nopadding"></div>
                             <div class="col-md-4 col-sm-4 col-xs-12 nopadding">

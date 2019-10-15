@@ -10,12 +10,13 @@ class Pages extends CI_Controller
 	{
 		if (!file_exists(APPPATH.'views/pages/'.$page.'.php')){
 			show_404();
-		}
-		
+		}		
 		
 		if ($page == 'search') {
 			$data['jobs'] = $this->Job_model->get_posts_home();
-			$data['categories'] = $this->Job_model->get_job_category();
+			//$data['categories'] = $this->Job_model->get_job_category();
+			$data['categories'] = $this->Job_model->job_count_category();
+
 			$this->load->view('template/header');
 			$this->load->view('pages/' .$page);
 			$this->load->view('pages/jobs', $data);
@@ -26,8 +27,7 @@ class Pages extends CI_Controller
 			$this->load->view('template/header');
 			$this->load->view('pages/' .$page);			
 			$this->load->view('template/footer');
-		}
-		
+		}		
 		
 	}
 

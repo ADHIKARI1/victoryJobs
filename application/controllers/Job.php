@@ -13,27 +13,82 @@ class Job extends CI_Controller
 
 	public function index()
 	{
-		$config = array();
-        $config["base_url"] = base_url() . "jobs";
+		/*$config = array();
+		$limit_page = 4;
+        $config["base_url"] = base_url() . "job/index";
         $config["total_rows"] = $this->Job_model->get_count();
-        $config["per_page"] = 5;
+        $config["per_page"] = $limit_page;
         $config["uri_segment"] = 2;
 
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
         $data["links"] = $this->pagination->create_links();
 
-        $data['jobs'] = $this->Job_model->get_jobs($config["per_page"], $page);
+        $data['jobs'] = $this->Job_model->get_jobs($limit_page, $page * $limit_page);
+        $data['categories'] = $this->Job_model->get_job_category();
 
         $this->load->view('template/header');        
         $this->load->view('job/index', $data);
+        $this->load->view('template/footer');*/
+
+        //set params
+		$params = array();
+		//set records per page
+        $limit_pages = 5;
+        $page = ($this->uri->segment(3)) ? ($this->uri->segment(3)) : 0;
+        $total = $this->Job_model->get_count();
+
+        if ($total > 0) 
+        {
+            // get current page records
+            $params['jobs'] = $this->Job_model->get_jobs($limit_pages, $page);
+            $params['categories'] = $this->Job_model->get_job_category();
+             
+            $config['base_url'] = base_url() . 'job/index';
+            $config['total_rows'] = $total;
+            $config['per_page'] = $limit_pages;
+            $config['uri_segment'] = 3;
+
+            //paging configuration
+            $config['num_links'] = 2;
+            $config['use_page_numbers'] = TRUE;
+            $config['reuse_query_string'] = TRUE;
+            
+            //bootstrap pagination 
+            $config['full_tag_open'] = '<ul class="pagination">';
+			$config['full_tag_close'] = '</ul>';	
+			$config['first_link'] = '&laquo; First';
+			$config['first_tag_open'] = '<li>';
+			$config['first_tag_close'] = '</li>';
+			$config['last_link'] = 'Last &raquo';
+			$config['last_tag_open'] = '<li>';
+			$config['last_tag_close'] = '</li>';
+			$config['next_link'] = 'Next';
+			$config['next_tag_open'] = '<li>';
+			$config['next_tag_close'] = '<li>';
+			$config['prev_link'] = 'Prev';
+			$config['prev_tag_open'] = '<li>';
+			$config['prev_tag_close'] = '<li>';
+			$config['cur_tag_open'] = '<li class="active"><a href="#">';
+			$config['cur_tag_close'] = '</a></li>';
+			$config['num_tag_open'] = '<li>';
+			$config['num_tag_close'] = '</li>';
+             
+            $this->pagination->initialize($config);
+             
+            // build paging links
+            $params['links'] = $this->pagination->create_links();
+        }
+         
+        $this->load->view('template/header');        
+        $this->load->view('job/index',  $params);
         $this->load->view('template/footer');
 	}
 
 	public function search()
 	{
 		$data['jobs'] = $this->Job_model->get_search();
-		$data['categories'] = $this->Job_model->get_job_category();
+		$data['categories'] = $this->Job_model->job_count_category();
 
 		$this->load->view('template/header');
 		$this->load->view('pages/search');

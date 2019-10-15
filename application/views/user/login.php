@@ -37,7 +37,7 @@
                         </div>  
                         <div class="login-container">
                             <div class="loginbox">
-                            <div class="loginbox-title">Sign In Here</div>   
+                            <div class="loginbox-title">Log in to the dashboard</div>   
                             <form id="logForm">  
                             <fieldset>                           
                                 <div class="form-group">
@@ -55,7 +55,7 @@
                                     <a href="#">Forgot Password?</a>
                                 </div>
                                 <div class="loginbox-signup">
-                                    <a href="<?php echo base_url(); ?>candidate/register">Sign Up With an Email?</a>
+                                    <a href="<?php echo base_url(); ?>candidate/register">Sign Up With your Email?</a>
                                 </div>
                             </fieldset>
                             </form>
