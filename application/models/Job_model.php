@@ -135,7 +135,7 @@ class Job_model extends CI_Model
         return $result->result_array();       
 	}
 
-	public function get_post_by_id($post_id)
+	public function get_post_by_id($post_id)        
 	{
 		$query = $this->db->query("CALL get_job_by_postid('$post_id')");
         mysqli_next_result($this->db->conn_id);

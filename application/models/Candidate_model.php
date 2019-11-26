@@ -45,7 +45,8 @@ class Candidate_model extends CI_Model
 
 	public function create_user($user)
 	{
-		try {
+		try 
+		{
 			$options = ['cost' => 12];
 			$enc_password = password_hash($user['password'], PASSWORD_BCRYPT, $options);
 			$data = array(
@@ -65,12 +66,12 @@ class Candidate_model extends CI_Model
 			);
 
 			$this->db->insert('usr_basic', $data);
-			return true;
-			
-		} catch (Exception $e) {
+			return true;			
+		} 
+		catch (Exception $e) 
+		{
 			return false;
-		}
-		
+		}		
 	}
 
 	public function complete_user($user)
@@ -156,7 +157,8 @@ class Candidate_model extends CI_Model
 		$this->db->order_by('desig_id','ASC');
 		$query = $this->db->get('job_designation');
 		return $query->result_array();
-	}	
+	}
+		
 	public function get_districts()
 	{
 		$this->db->order_by('district_id','ASC');

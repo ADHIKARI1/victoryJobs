@@ -20,7 +20,7 @@
                                             foreach ($resumes as $resume): 
                                             ?>
                                             <tr>
-                                                <th scope="row"><?php echo $count;  ?></th>
+                                                <td scope="row"><?php echo $count;  ?></td>
                                                 <td>
                                                     <h5><?php echo  $resume['user_email']; ?></h5></td>
                                                 <td><a class="btn btn-primary" href="<?php echo base_url(); ?>uploads/cv/<?php echo  $resume['applied_cv']; ?>"> Download </a></td>

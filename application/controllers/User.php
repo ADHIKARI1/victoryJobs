@@ -24,7 +24,11 @@ class User extends CI_Controller
 			if ($status) 
 				redirect('employer/edit');
 			else
-				redirect('employer/profile');
+				redirect('employer/profile');			
+		}
+		else if($this->session->userdata('islogged_mko789') && $this->session->userdata('idtype_mko789') == 1)
+		{
+			redirect('admin/dashboard');
 		}
 		else
 		{

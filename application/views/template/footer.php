@@ -119,6 +119,8 @@
     <!-- MEGA MENU --> 
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/mega_menu.min.js"></script> 
     
+    <!-- Datatable JS --> 
+    <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>   
       
     
     <!-- JQUERY COUNTERUP --> 

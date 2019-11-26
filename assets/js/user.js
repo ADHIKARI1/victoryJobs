@@ -50,7 +50,7 @@ var loginUser = function (){
 
 	return {
 		init : function (){
-			$('#logText').html('Login');
+			$('#logText').html('Log In');
 			$('#logForm').submit(function(e){
 				e.preventDefault();
 				$('#logText').html('Checking...');
@@ -66,7 +66,7 @@ var loginUser = function (){
 						},
 						success: function(response){
 							$('#lmessage').html(response.lmessage);
-							$('#logText').html('Login');
+							$('#logText').html('Log In');
 							if(response.error){
 								$('#lresponseDiv').removeClass('alert-success').addClass('alert-danger').show();
 							}
@@ -83,7 +83,7 @@ var loginUser = function (){
 						},
 						error: function (response) {
                         $('#lmessage').html(response.lmessage);
-						$('#logText').html('Login');
+						$('#logText').html('Log In');
 						$('#lresponseDiv').removeClass('alert-success').addClass('alert-danger').show();
                     	}
 					});
@@ -311,7 +311,56 @@ var employerUpdateProfile = function(){
 	}
 }();
 
+var admCreateProfile = function(){
+	return {
+		init: function(){
+			$('#admCreateProfileForm').submit(function(e){
+				e.preventDefault();
+				var form_data = new FormData($('#admCreateProfileForm')[0]);
+				$.ajax({
+					type:"POST",
+					data: form_data,
+					dataType: 'json',
+					url: BASE_URL + 'admin/create',
+					processData : false,
+					contentType: false,
+					success: function(response){
+						$('#message').html(response.message);
+						if(response.error)
+						{
+							$('#responseDiv').removeClass('alert-success').addClass('alert-danger').show();
+						}
+						else
+						{
+							$('#responseDiv').removeClass('alert-danger').addClass('alert-success').show();
+							$('#empCreateProfileForm')[0].reset();
+						}
+					}
+				});
+			});
+			$(document).on('click', '#clearMsg', function(){
+			$('#responseDiv').hide();
+			});
+		}
+	}
+}();
+
+/*--------- Data Table ------------*/
+
+var LoadDataTables = function () {
+    return {
+        init: function () {
+            $('#TblEmployers').DataTable();            
+        }
+    }
+}();
+
+/*jQuery(document).ready(function () {
+    LoadDataTables.init();    
+});*/
+
 jQuery(document).ready(function(){
+	LoadDataTables.init();  
 	createCandidate.init();
 	loginUser.init();
 	candidateFilteringProfile.init();
@@ -319,4 +368,5 @@ jQuery(document).ready(function(){
 	createEmployer.init();
 	employerCreateProfile.init();
 	employerUpdateProfile.init();
+	admCreateProfile.init();
 });

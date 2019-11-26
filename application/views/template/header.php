@@ -28,6 +28,9 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/owl.carousel.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/owl.style.css">
 
+<!-- Datatable -->
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css">
+
 <!-- TEMPLATE CORE CSS -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
 
@@ -78,7 +81,7 @@
                 <li class="no-bg"><a href="<?php echo base_url(); ?>user/signin" class="p-job"><i class="fa fa-plus-square"></i> Post a Job</a></li>
                 <?php endif; ?>
                 <?php if(!$this->session->userdata('islogged_mko789')): ?>
-                <li class="no-bg login-btn-no-bg"><a href="<?php echo base_url(); ?>user/signin" class="login-header-btn"><i class="fa fa-sign-in"></i> Login</a></li>
+                <li class="no-bg login-btn-no-bg"><a href="<?php echo base_url(); ?>user/signin" class="login-header-btn"><i class="fa fa-sign-in"></i> Log In</a></li>
                          </li>
                 <li class="no-bg login-btn-no-bg"><a href="<?php echo base_url(); ?>candidate/register" class="login-header-btn"><i class="fa fa-user-plus"></i> Register</a></li>
                 </li>
@@ -89,10 +92,12 @@
                             <?php if ($this->session->userdata('islogged_mko789') && $this->session->userdata('idtype_mko789') == 2): ?>
                                 <li><a href="<?php echo base_url(); ?>candidate/profile"><i class="fa fa-user"></i> My Profile</a></li> 
                             <?php elseif($this->session->userdata('islogged_mko789') && $this->session->userdata('idtype_mko789') == 3): ?>
-                                <li><a href="<?php echo base_url(); ?>employer/profile"><i class="fa fa-user"></i> My Profile</a></li>  
+                                <li><a href="<?php echo base_url(); ?>employer/edit"><i class="fa fa-user"></i> My Profile</a></li>  
                             <?php endif; ?>                                                  
                             <li><a href="<?php echo base_url(); ?>user/logout"><i class="fa fa-power-off"></i> Logout</a></li>
-                            
+                             <?php if ($this->session->userdata('islogged_mko789') && $this->session->userdata('idtype_mko789') == 1): ?>
+                            <li><a href="<?php echo base_url(); ?>admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                            <?php endif; ?> 
                         </ul>
                 </li>
                 <?php endif; ?>

@@ -3,7 +3,7 @@
                             <div id="responseDiv" class="alert text-center" style="margin-top:20px; display:none;">
                                 <button type="button" class="close" id="clearMsg"><span aria-hidden="true">&times;</span></button>
                                 <span id="message"></span>
-                            </div>  
+                            </div>   
                             <div class="heading-inner first-heading">
                                 <p class="title">Edit Profile</p>
                             </div>

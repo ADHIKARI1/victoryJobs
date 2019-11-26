@@ -11,7 +11,11 @@
                                 <div class="job-box">
                                     <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs hidden-sm">
                                         <div class="comp-logo">
-                                            <a href="#"> <img src="<?php echo base_url(); ?>uploads/logo/<?php echo $job['org_logo']; ?>" class="img-responsive" alt="scriptsbundle"></a>
+                                            <?php if(empty($job['org_logo'])): ?>
+                                                <a href="#"> <img src="<?php echo base_url(); ?>uploads/logo/default.png" class="img-responsive" alt="scriptsbundle"></a>
+                                            <?php else: ?>
+                                                <a href="#"> <img src="<?php echo base_url(); ?>uploads/logo/<?php echo $job['org_logo']; ?>" class="img-responsive" alt="scriptsbundle"></a>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12 nopadding">

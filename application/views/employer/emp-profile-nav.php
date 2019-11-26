@@ -21,9 +21,9 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="col-md-4 col-sm-4 col-xs-12"> 
                         <div class="panel">
-                                <div class="dashboard-logo-sidebar">
+                                <!--<div class="dashboard-logo-sidebar">
                                     <img class="img-responsive center-block" src="<?php echo base_url(); ?>assets/images/company/logo1.jpg" alt="Image">
-                                </div>
+                                </div> -->
                                 <div class="text-center dashboard-logo-sidebar-title">
                                     <h4><?php echo $organization['org_name'];?></h4>
                                 </div>      
