@@ -202,10 +202,49 @@ return {
 }
 }();
 
+
+var adminUpdatePost = function(){
+return {
+	init: function(){
+		$('#admin-update-job').submit(function(e){
+			e.preventDefault();
+
+			var form_data = new FormData($('#admin-update-job')[0]);				
+				$.ajax({
+					type:'POST',					
+					data : form_data,
+					dataType:'json',
+					processData: false,
+        			contentType: false,
+					url: BASE_URL + "admin/update_job",					
+					success: function(response){					
+						$('#message').html(response.message);
+						if(response.error)
+						{
+							//$('#responseDiv').removeClass('alert-success').addClass('alert-danger').show();
+							 swal("", response.message, "error");
+						}
+						else
+						{
+							//$('#responseDiv').removeClass('alert-danger').addClass('alert-success').show();
+							 swal("", response.message, "success");							
+						}
+					}
+				});
+		});
+		$(document).on('click', '#clearMsg', function(){
+			$('#responseDiv').hide();
+		});
+
+	}
+}
+}();
+
 jQuery(document).ready(function(){
 	createPost.init();
 	applyJob.init();
 	LoadEmployerDetail.init();
 	adminCreatePost.init();
 	LoadEmployerDetailForEdit.init();
+	adminUpdatePost.init();
 });

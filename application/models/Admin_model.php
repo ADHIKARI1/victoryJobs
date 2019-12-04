@@ -68,6 +68,45 @@ class Admin_model extends CI_Model
 		
 	}
 
+	public function update_employer($user, $status)
+	{
+		try {		
+
+			if(!$status)	
+			{
+				$data = array(								
+				'user_email' => $user['email']						
+				);
+				$this->db->where('ref_emp_id', $user['ref_org_id']);
+				$update_1 = $this->db->update('usr_user', $data);
+			}		
+
+			$data = array(				
+				'org_username' => $user['username'],
+				'org_name' => $user['org_name'],				
+				'org_email' => $user['email'],
+				'org_telephone' => $user['org_telephone'],
+				'org_ind_id' => $user['org_ind_id'],
+	            'org_district_id' => $user['org_district_id'],	
+	            'org_city_id' => $user['org_city_id'],	
+	            'org_address' => $user['org_address'],
+	            'org_mobile' => $user['org_mobile'],
+	            'contact_email' => $user['contact_email'],	
+	            'org_contact_person' => $user['org_contact_person'],
+	            'no_of_vacancies' => $user['no_of_vacancies'],
+	            'org_logo' => $user['org_logo']	            				
+			);
+			$this->db->where('ref_org_id', $user['ref_org_id']);
+			$update_2 = $this->db->update('org_basic', $data);
+
+			return true;
+			
+		} catch (Exception $e) {
+			return false;
+		}
+		
+	}
+
 }
 
  ?>

@@ -142,6 +142,8 @@
 
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/job.js"></script> 
 
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/admin.js"></script> 
+
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/filterselect.min.js"></script>
 
 

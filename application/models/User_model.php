@@ -53,6 +53,16 @@ class User_model extends CI_Model
 
 	}
 
+	public function is_email_unique($email)
+	{
+		$result = $this->db->get_where('usr_user', array('user_email' => $email));
+		$existuser = $result->row_array();
+		if ($existuser !== null) 
+			return true;
+		else
+			return false;
+	}
+
 
 }
 

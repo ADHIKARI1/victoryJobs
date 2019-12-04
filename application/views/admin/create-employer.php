@@ -108,7 +108,7 @@
                                          <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>No of Vacancies  <span class="required">*</span></label>
-                                                <input name="no-of-vacancy" type="number" placeholder="Vacancies" class="form-control" required>
+                                                <input name="no-of-vacancy" type="number" placeholder="Vacancies" class="form-control">
                                             </div>
                                         </div>                                      
                                         <div class="col-md-6 col-sm-12">

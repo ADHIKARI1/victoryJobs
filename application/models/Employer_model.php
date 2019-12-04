@@ -27,6 +27,35 @@ class Employer_model extends CI_Model
 		}
 	}
 
+	public function get_all_detail($id)
+	{
+		try 
+		{
+			$this->db->select('*');
+	      	$this->db->from('usr_user');
+	      	$this->db->join('org_basic', 'org_basic.ref_org_id = usr_user.ref_emp_id', 'left');	  
+	      	$this->db->where(array('ref_org_id'=>$id));    	
+	      	$query = $this->db->get();
+
+	      	if($query->num_rows() != 0)
+		    {
+		        return $query->row_array();
+		    }
+		    else
+		    {
+		        return false;
+		    }
+
+		    /*print_r($query->row_array());
+		    die;*/
+
+		} 
+		catch (Exception $e) 
+		{
+			return false;
+		}
+	}
+
 	public function get_employer($id){
 		try {
 			$query = $this->db->get_where('org_basic',array('ref_org_id'=>$id));

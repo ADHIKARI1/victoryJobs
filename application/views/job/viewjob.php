@@ -120,12 +120,12 @@
                                     <p>
                                         <?php echo $details[0]['post_overview']; ?>
                                     </p>
-                                    <div class="heading-inner">
+                                    <!-- <div class="heading-inner">
                                         <p class="title">Job Description:</p>
                                     </div>
                                     <p>
                                         <?php echo $details[0]['post_description']; ?>
-                                    </p> 
+                                    </p> -->
                                     <br>
                                     ​<picture>
                                       <source srcset="" type="image/svg+xml">

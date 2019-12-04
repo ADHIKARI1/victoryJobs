@@ -350,7 +350,8 @@ var admCreateProfile = function(){
 var LoadDataTables = function () {
     return {
         init: function () {
-            $('#TblEmployers').DataTable();            
+            $('#TblEmployers').DataTable();     
+            $('#TblResumes').DataTable();            
         }
     }
 }();

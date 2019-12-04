@@ -16,10 +16,11 @@
                                 <div class="panel">
                                     <ul class="nav nav-pills nav-stacked">                                 
                                         <li>
-                                            <a href="<?php echo base_url(); ?>admin/dashboard"> <i class="fa fa-edit"></i> ALL Employers </a>
-                                            <a href="<?php echo base_url(); ?>admin/create_post"> <i class="fa fa-edit"></i> Post Job </a>
-                                            <a href="<?php echo base_url(); ?>admin/create_employer"> <i class="fa fa-edit"></i> Create Employer </a>
-                                            <a href="<?php echo base_url(); ?>admin/edit_employer"> <i class="fa fa-edit"></i> Edit Employer </a>
+                                            <a href="<?php echo base_url(); ?>admin/dashboard"> <i class="fa fa-edit"></i>Employers </a>
+                                            <a href="<?php echo base_url(); ?>admin/all_posts"> <i class="fa fa-edit"></i> Job Posts </a>
+                                             <a href="<?php echo base_url(); ?>admin/get_resumes"> <i class="fa fa-edit"></i> Resumes </a> 
+                                            <a href="<?php echo base_url(); ?>admin/create_post"> <i class="fa fa-edit"></i> Post a Job </a>
+                                            <a href="<?php echo base_url(); ?>admin/create_employer"> <i class="fa fa-edit"></i> Create an Employer </a>                                                                                                                                   
                                         </li>                                                                                                           
                                     </ul>
                                 </div>
