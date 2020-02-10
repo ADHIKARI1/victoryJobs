@@ -1,41 +1,4 @@
-        <section class="job-breadcrumb">
-            <div class="container">
-                <div class="row">                    
-                    <div class="col-md-6 col-sm-7 co-xs-12 text-left">
-                        <h3>Edit profile</h3>
-                    </div>
-                    <div class="col-md-6 col-sm-5 co-xs-12 text-right">
-                        <div class="bread">
-                            <ol class="breadcrumb">
-                                <li><a href="#">Home</a> </li>
-                                <li class="active">edit profile</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="dashboard-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="col-md-4 col-sm-4 col-xs-12">                            
-                            <div class="profile-nav">
-                                <div class="panel">
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <li>
-                                            <a href="user-dashboard.html"> <i class="fa fa-user"></i> Profile</a>
-                                        </li>
-                                        <li class="active">
-                                            <a href="user-edit-profile.html"> <i class="fa fa-edit"></i> Edit Profile</a>
-                                        </li>                                       
-                                        <li>
-                                            <a href="user-job-applied.html"> <i class="fa  fa-list-ul"></i> Jobs Applied</a>
-                                        </li>                                      
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+               
                         <div class="col-md-8 col-sm-8 col-xs-12">
                             <div id="responseDiv" class="alert text-center" style="margin-top:20px; display:none;">
                                 <button type="button" class="close" id="clearMsg"><span aria-hidden="true">&times;</span></button>
@@ -51,44 +14,44 @@
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>First Name <span class="required">*</span></label>
-                                                <input name="firstName" type="text" placeholder="" class="form-control" required>
+                                                <input name="firstName" type="text" placeholder="" class="form-control" value="<?php echo $candidate['user_fname'] ?>" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Last Name <span class="required">*</span></label>
-                                                <input name="lastName" type="text" placeholder="" class="form-control" required>
+                                                <input name="lastName" type="text" placeholder="" class="form-control" value="<?php echo $candidate['user_lname'] ?>" required>
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Date Of Birth <span class="required">*</span></label>
-                                                <input name="dob" type="date" placeholder="" class="form-control" required> 
+                                                <input name="dob" type="date" placeholder="" class="form-control" value="<?php echo $candidate['user_dob'] ?>" required> 
                                             </div>
                                         </div>                                        
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Telephone <span class="required">*</span></label>
-                                                <input name="telephone"  pattern="[0-9]{10}" type="tel" placeholder="" class="form-control" required>
+                                                <input name="telephone"  pattern="[0-9]{10}" type="tel" placeholder="" class="form-control" value="<?php echo $candidate['user_contact_no1'] ?>" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Mobile <span class="required"></span></label>
-                                                <input name="mobile" pattern="[0-9]{10}" type="tel" placeholder="" class="form-control">
+                                                <input name="mobile" pattern="[0-9]{10}" type="tel" placeholder="" class="form-control" value="<?php echo $candidate['user_contact_no2'] ?>">
                                             </div>
                                         </div>                                         
                                         <div class="col-md-12 col-sm-12">
                                             <div class="form-group">
                                                 <label>Address <span class="required">*</span></label>
-                                                <input name="address" type="text" placeholder="" class="form-control" required>
+                                                <input name="address" type="text" placeholder="" class="form-control" value="<?php echo $candidate['user_address'] ?>" required>
                                             </div>
                                         </div>                                                                   
                                          <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Experience No of Years <span class="required">*</span></label>
-                                                <input name="experience" type="number" placeholder="" class="form-control" required>
+                                                <input name="experience" type="number" placeholder="" class="form-control" value="<?php echo $candidate['user_experience_years'] ?>" required>
                                             </div>
                                         </div>
                                          <div class="col-md-6 col-sm-12">
@@ -97,7 +60,7 @@
                                                 <select class="form-control" name="CandidateHQ" id="CandidateHQ" required>
                                                     <option value="">--- Select ---</option>
                                                    <?php foreach($qualifications as $qualification): ?>
-                                                   <option value="<?php echo $qualification['q_id'] ?>"><?php echo $qualification['q_name'] ?></option>
+                                                   <option value="<?php echo $qualification['q_id'] ?>" <?php if($qualification['q_id'] == $candidate['user_highest_qualification'])echo "selected"; ?> ><?php echo $qualification['q_name'] ?></option>
                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -108,7 +71,7 @@
                                                <select class="form-control" name="CanJobCat" id="CanJobCat">
                                                     <option value="">--- Select ---</option>
                                                    <?php foreach($job_categories as $job_category): ?>
-                                                   <option  value="<?php echo $job_category['job_cat_id'] ?>"><?php echo $job_category['job_cat_name'] ?></option>
+                                                   <option  value="<?php echo $job_category['job_cat_id'] ?>" <?php if($job_category['job_cat_id'] == $candidate['job_category'])echo "selected"; ?>><?php echo $job_category['job_cat_name'] ?></option>
                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -119,7 +82,7 @@
                                                  <select class="form-control" name="CanPreference1" id="CanPreference1" required>
                                                     <option value="">--- Select ---</option>
                                                    <?php foreach($job_designations as $job_designation): ?>
-                                                   <option data-foo = "<?php echo $job_designation['ref_cat_id'] ?>" value="<?php echo $job_designation['desig_id'] ?>"><?php echo $job_designation['desig_name'] ?></option>
+                                                   <option data-foo = "<?php echo $job_designation['ref_cat_id'] ?>" value="<?php echo $job_designation['desig_id'] ?>" <?php if($job_designation['desig_id'] == $candidate['user_preference1'])echo "selected"; ?> ><?php echo $job_designation['desig_name'] ?></option>
                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -130,7 +93,7 @@
                                                 <select class="form-control" name="CanPreference2" id="CanPreference2">
                                                     <option value="">--- Select ---</option>
                                                    <?php foreach($job_designations as $job_designation): ?>
-                                                   <option data-foo = "<?php echo $job_designation['ref_cat_id'] ?>" value="<?php echo $job_designation['desig_id'] ?>"><?php echo $job_designation['desig_name'] ?></option>
+                                                   <option data-foo = "<?php echo $job_designation['ref_cat_id'] ?>" value="<?php echo $job_designation['desig_id'] ?>" <?php if($job_designation['desig_id'] == $candidate['user_preference2'])echo "selected"; ?>><?php echo $job_designation['desig_name'] ?></option>
                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -141,7 +104,7 @@
                                                 <select class="form-control" name="CanPreference3" id="CanPreference3">
                                                     <option value="">--- Select ---</option>
                                                    <?php foreach($job_designations as $job_designation): ?>
-                                                   <option data-foo = "<?php echo $job_designation['ref_cat_id'] ?>" value="<?php echo $job_designation['desig_id'] ?>"><?php echo $job_designation['desig_name'] ?></option>
+                                                   <option data-foo = "<?php echo $job_designation['ref_cat_id'] ?>" value="<?php echo $job_designation['desig_id'] ?>" <?php if($job_designation['desig_id'] == $candidate['user_preference3'])echo "selected"; ?>><?php echo $job_designation['desig_name'] ?></option>
                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -149,13 +112,13 @@
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Current Occupation <span class="required">*</span></label>
-                                                <input name="curOccupation" type="text" placeholder="" class="form-control" required>
+                                                <input name="curOccupation" type="text" placeholder="" class="form-control" value="<?php echo $candidate['user_cur_occupation'] ?>" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Current Organization <span class="required"></span></label>
-                                                <input name="curOrganization" type="text" placeholder="" class="form-control">
+                                                <input name="curOrganization" type="text" placeholder="" class="form-control" value="<?php echo $candidate['user_cur_org'] ?>">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-12">
@@ -169,6 +132,7 @@
                                                 </select>
                                             </div>
                                         </div>
+                                    <?php if($candidate['user_prefer_loc'] == 0):?>
                                         <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Prefered Location <span class="required">*</span></label>
@@ -180,6 +144,19 @@
                                                 </select>
                                             </div>
                                         </div>
+                                    <?php else: ?>
+                                    <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Prefered Location <span class="required">*</span></label>
+                                                <select class="form-control" name="preferLocation" required>
+                                                    <option value="">--- Select ---</option>
+                                                   <?php foreach($locations as $location): ?>
+                                                   <option data-foo ="<?php echo $location['ref_district_id'] ?>"  value="<?php echo $location['city_id'] ?>" <?php if($location['city_id']  == $candidate['user_prefer_loc'])echo "selected"; ?>><?php echo $location['city_name'] ?></option>
+                                                   <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
                                         <div class="col-md-6 col-sm-12">
                                                 <div class="input-group image-preview form-group">
                                                     <label>Profile Image: <span class="required"></span></label>
@@ -200,10 +177,10 @@
                                                 <div class="form-group" >
                                                 <div style="margin-left:30px">
                                                     <label class="radio">
-                                                          <input type="radio" name="gender" value = "male" required>Male
+                                                          <input type="radio" name="gender" value = "male" <?php if($candidate['user_gender'] == 'male')echo "checked"; ?> required>Male
                                                     </label>
                                                     <label class="radio">
-                                                          <input type="radio" name="gender" value ="female">Female
+                                                          <input type="radio" name="gender" value ="female" <?php if($candidate['user_gender'] == 'female')echo "checked"; ?>>Female
                                                     </label>
                                                 </div> 
                                                 </div>                                       
@@ -212,7 +189,7 @@
                                         <div class="col-md-12 col-sm-12">
                                             <div class="form-group">
                                                 <label>About yourSelf <span class="required"></span></label>
-                                                <textarea name="description" cols="6" rows="8" placeholder="" class="form-control"></textarea>
+                                                <textarea name="description" cols="6" rows="8" placeholder="" class="form-control"><?php echo $candidate['user_description']; ?></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-sm-12">
@@ -222,6 +199,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

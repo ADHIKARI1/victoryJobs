@@ -145,10 +145,10 @@ var candidateFilteringProfile = function(){
 					return id == state;					
 				}).show();
 				//set default value
-                var defaultItem = $('#CanPreference1 option:visible:first').text();
+                /*var defaultItem = $('#CanPreference1 option:visible:first').text();
                 $('#CanPreference1').val(defaultItem);
                 $('#CanPreference2').val(defaultItem);
-                $('#CanPreference3').val(defaultItem);
+                $('#CanPreference3').val(defaultItem);*/
 			};
 
 			var state = $('#CanJobCat').val();

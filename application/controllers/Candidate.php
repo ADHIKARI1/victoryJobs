@@ -11,6 +11,11 @@ class Candidate extends CI_Controller
 
 	public function profile()	
 	{
+		if ($this->session->userdata('userid_mko789') !== NULL && $this->session->userdata('userid_mko789') != "" && $this->session->userdata('idtype_mko789') == 2)
+			$cand_id = $this->session->userdata('userid_mko789');
+		else
+			redirect('/');
+
 		if ($this->session->userdata('islogged_mko789') && $this->session->userdata('idtype_mko789') == 2) 
 		{
 			$data['qualifications'] = $this->Candidate_model->get_hqualifications();
@@ -18,8 +23,10 @@ class Candidate extends CI_Controller
 			$data['job_designations'] = $this->Candidate_model->get_job_designations();
 			$data['districts'] = $this->Candidate_model->get_districts();
 			$data['locations'] = $this->Candidate_model->get_cities();
+			$data['candidate'] = $this->Candidate_model->get_candidate($cand_id);
 
 			$this->load->view('template/header');
+			$this->load->view('candidate/cand-profile-nav');
 			$this->load->view('candidate/profile', $data);
 			$this->load->view('template/footer');
 		}
@@ -183,7 +190,8 @@ class Candidate extends CI_Controller
 	            $user['user_dob'] = $_POST['dob'];	
 	            $user['user_experience_years'] = $_POST['experience'];
 	            $user['user_highest_qualification'] = $_POST['CandidateHQ'];
-	            $user['user_preference1'] = $_POST['CanPreference1'];	
+	            $user['job_category'] = $_POST['CanJobCat'];	
+	            $user['user_preference1'] = $_POST['CanPreference1'];
 	            $user['user_preference2'] = $_POST['CanPreference2'];
 	            $user['user_preference3'] = $_POST['CanPreference3'];
 	            $user['user_cur_occupation'] = $_POST['curOccupation'];	

@@ -42,8 +42,7 @@ class Job extends CI_Controller
         {
             // get current page records
             $params['jobs'] = $this->Job_model->get_jobs($limit_pages, $page);
-            $params['categories'] = $this->Job_model->get_job_category();
-             
+            $params['categories'] = $this->Job_model->job_count_category();
             $config['base_url'] = base_url() . 'job/index';
             $config['total_rows'] = $total;
             $config['per_page'] = $limit_pages;
@@ -131,7 +130,7 @@ class Job extends CI_Controller
 		}		
 	}
 
-	private function mail($post_id, $title, $org_email)
+	private function mail($post_id, $title, $org_email, $cv)
 	{
 		//set up email
 			$config = array(
@@ -166,6 +165,7 @@ class Job extends CI_Controller
 		    $this->email->to($org_email);
 		    $this->email->subject('victoryJobs - Notification');
 		    $this->email->message($message);
+		    $this->email->attach(base_url().'uploads/cv/'.$cv);
 
 		    //sending email
 		    if ($this->email->send())
@@ -194,8 +194,8 @@ class Job extends CI_Controller
             if(!empty($_FILES['input-file-preview']['name']))
             {
             	$file_name = rand(0,1000).time();
-                $config['upload_path'] = 'uploads/sent/';
-                $config['upload_url']  = base_url().'uploads/sent/';
+                $config['upload_path'] = 'uploads/cv/';
+                $config['upload_url']  = base_url().'uploads/cv/';
                 $config['allowed_types'] = 'doc|docx|pdf';
                 $config['file_name'] = $file_name;                
                 
@@ -232,14 +232,13 @@ class Job extends CI_Controller
 				$job['applied_email'] = $_POST['app-email'];
 				$job['cover_letter'] = $_POST['cover'];
 				
-					
-				$status = $this->mail($_POST['post-id'], $_POST['post-title'], $_POST['org-email']);			
+				//delete_files($file_data['file_path']); use to unlink
+				$status = $this->mail($_POST['post-id'], $_POST['post-title'], $_POST['org-email'], $job['applied_cv']);			
 				if($status)
 				{
 					$query = $this->Job_model->apply($job);
 					if ($query) 
 					{
-
 						$output['message'] = 'Successfully Applied for the job..';					
 					}			
 					else

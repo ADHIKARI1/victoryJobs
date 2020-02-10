@@ -88,7 +88,6 @@ var LoadEmployerDetail = function()
         				contentType: false,
 						url: BASE_URL + 'admin/getEmployer',                         
                         success : function(response){
-
                         	if(response.error)
 							{
 								$('#admin-get-employer')[0].reset();
@@ -96,17 +95,17 @@ var LoadEmployerDetail = function()
 							}
 							else
 							{
-								console.log(response);
+								//console.log(response);
                             	$('#emp-name').val(response.org_name);
                             	$('#emp-email').val(response.org_email);
                             	$('#emp-ref-id').val(response.ref_org_id);
-								$('#admin-get-employer')[0].reset();
+								$('#admin-get-employer')[0].reset();								
 							}
-                            
+							                        
                         },
                         error: function (response) {
                         	$('#admin-get-employer')[0].reset();
-							$('#admin-post-job')[0].reset();
+							$('#admin-post-job')[0].reset();							
 						}
                     });
 

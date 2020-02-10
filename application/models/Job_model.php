@@ -50,8 +50,13 @@ class Job_model extends CI_Model
  
         return false;*/
         
+        /*print_r($from);
+		die;*/
+
 		$stored_proc = "CALL get_posts_limit(?, ?)";
-        $data = array('page_from' => $from, 'page_size' => $size);
+		$page = ($from * $size) - $from;
+		$page =  $page < 0 ?  0 : $page;
+        $data = array('page_from' => $from, 'page_size' => $page);
         $result = $this->db->query($stored_proc, $data);
         mysqli_next_result( $this->db->conn_id );
 
@@ -127,7 +132,7 @@ class Job_model extends CI_Model
 	public function get_posts_home()
 	{		
         $stored_proc = "CALL get_posts_limit(?, ?)";
-        $data = array('page_from' => 0, 'page_size' => 10);
+        $data = array('page_from' => 10, 'page_size' => 0);
         $result = $this->db->query($stored_proc, $data);
         mysqli_next_result( $this->db->conn_id );
 

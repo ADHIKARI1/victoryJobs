@@ -11,6 +11,15 @@ class Candidate_model extends CI_Model
 		parent::__construct();
 		//load databse connection
 		$this->load->database(); 
+	}
+
+	public function get_candidate($id){
+		try {
+			$query = $this->db->get_where('usr_basic',array('ref_emp_id'=>$id));
+			return $query->row_array();
+		} catch (Exception $e) {
+			return false;
+		}
 	}	
 
 	public function get_user_basic_detail($id){
@@ -94,6 +103,7 @@ class Candidate_model extends CI_Model
 	            'user_dob' => $user['user_dob'],	
 	            'user_experience_years' => $user['user_experience_years'],
 	            'user_highest_qualification' => $user['user_highest_qualification'],
+	            'job_category' => $user['job_category'],
 	            'user_preference1' => $user['user_preference1'],	
 	            'user_preference2' => $user['user_preference2'],
 	            'user_preference3' => $user['user_preference3'],

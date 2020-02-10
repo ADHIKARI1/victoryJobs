@@ -16,6 +16,21 @@
  </div> 
 
 <div class="col-md-8 col-sm-8 col-xs-12">
+      <form class="row" id="admin-get-employer" enctype="multipart/form-data">
+        <fieldset class="scheduler-border">
+          <legend class="scheduler-border">Change Employer/Organization</legend>        
+                        <div class="form-group">
+                            <label>Employer/Organization ID #.</label>
+                            <input name="org-id" type="text" placeholder="Type ID" class="form-control" required>
+                        </div>
+                         <div class="col-md-12 col-sm-12 col-xs-12">
+                      <button   class="btn btn-default pull-right">Get Data<i class="fa fa-angle-right"></i></button>
+                    </div>
+        </fieldset>
+                 
+      </form>
+</div>
+<div class="col-md-8 col-sm-8 col-xs-12">
 			<div id="responseDiv" class="alert text-center" style="margin-top:20px; display:none;">
                                 <button type="button" class="close" id="clearMsg"><span aria-hidden="true">&times;</span></button>
                                 <span id="message"></span>
@@ -108,8 +123,7 @@
 	                                <label>Post Expire Date <span class="required">*</span></label>
 	                                <input name="ex-date" type="date" placeholder="" class="form-control" value="<?php echo $job[0]['post_expire_date']; ?>" required> 
 	                            </div>
-	                </div>     
-
+	                </div>
 	                <div class="col-md-6 col-sm-12">
 	                                <div class=" image-preview form-group">
 	                                    <label> <?php if($job[0]['post_image'] == "") echo "No Image Found Upload:";else echo "Image Found :"; ?> <span class="required"></span></label>                                 
@@ -170,10 +184,9 @@
 	                                    <input type="file"  name="paymentSlip" />
 	                                </div>
 	                </div>                 
-	                <div class="clearfix"></div>          
-	                                       
+	                <div class="clearfix"></div>                                       
 	                <div class="col-md-12 col-sm-12 col-xs-12">
-	                    <button   class="btn btn-default pull-right">Publish Job <i class="fa fa-angle-right"></i></button>
+	                    <button   class="btn btn-default pull-right">Update Job <i class="fa fa-angle-right"></i></button>
 	                </div>
           </form>
 	</div>

@@ -6,6 +6,10 @@
                         <div class="job-modal">
                             <h2>Want To Apply For this Job?</h2>
                         </div>
+                        <div id="responseDiv" class="col-md-12 col-sm-12 col-xs-12 alert text-center" style="display:none;">
+                            <button type="button" class="close" id="clearMsg"><span aria-hidden="true">&times;</span></button>
+                            <span id="message"></span>
+                        </div> 
                         <form method="post" id="job-form" enctype="multipart/form-data">
                             <div class="row clearfix">
                                 <div class="column col-md-12 col-sm-12 col-xs-12">
@@ -80,10 +84,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
-                        <div id="responseDiv" class="alert text-center" style="margin-top:20px; display:none;">
+                       <!-- <div id="responseDiv" class="alert text-center" style="margin-top:20px; display:none;">
                             <button type="button" class="close" id="clearMsg"><span aria-hidden="true">&times;</span></button>
                             <span id="message"></span>
-                        </div> 
+                        </div> -->
                         <div class="col-md-8 col-sm-8 col-xs-12">
                             <div class="single-job-page">
                                 <div class="job-short-detail">
