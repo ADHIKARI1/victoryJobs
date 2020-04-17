@@ -2,13 +2,13 @@
     <div class="container">
             <div class="row">
                     <div class="col-md-6 col-sm-7 co-xs-12 text-left">
-                        <h3>Login Page</h3>
+                        <h3>Reset Password</h3>
                     </div>
                     <div class="col-md-6 col-sm-5 co-xs-12 text-right">
                         <div class="bread">
                             <ol class="breadcrumb">
                                 <li><a href="#">Home</a></li>
-                                <li class="active">Sign In</li>
+                                <li class="active">Reset Password</li>
                             </ol>
                         </div>
                     </div>
@@ -37,27 +37,24 @@
                         </div>  
                         <div class="login-container">
                             <div class="loginbox">
-                            <div class="loginbox-title">Log in to the dashboard</div>   
-                            <form id="logForm">  
-                            <fieldset>                           
-                                <div class="form-group">
-                                    <label>Email: <span class="required">*</span></label>
-                                    <input name="lemail" placeholder="" class="form-control" type="email" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Password: <span class="required">*</span></label>
-                                    <input name="lpassword" placeholder="" class="form-control" type="password" required>
-                                </div>                                
-                                <div class="loginbox-submit">
-                                   <button type="submit" class="btn btn-lg btn-primary btn-block"><span id="logText"></span></button>
-                                </div>
-                                <div class="loginbox-forgot">
-                                    <a href="<?php echo base_url(); ?>user/forgetpassword">Forgot Password?</a>
-                                </div>
-                                <div class="loginbox-signup">
-                                    <a href="<?php echo base_url(); ?>candidate/register">Sign Up With your Email?</a>
-                                </div>
-                            </fieldset>
+                            <div class="loginbox-title">Please Enter A New Password :</div>   
+                            <form id="resetPasswordForm">  
+                                <fieldset>                           
+                                     <div class="form-group">
+                                        <label>Password: <span class="required">*</span></label>
+                                        <input name="password" placeholder="" class="form-control" type="password" required>
+                                        <input type="hidden"  name="ref_emp_id"  value= "<?php echo $ref_id; ?>">
+                                    </div>      
+                                     <div class="form-group">
+                                        <label>Retype Password: <span class="required">*</span></label>
+                                        <input name="confirm_password" placeholder="" class="form-control" type="password" required>
+                                    </div>        
+                                                                 
+                                    <div class="loginbox-submit">
+                                       <button type="submit" class="btn btn-lg btn-primary btn-block"><span >RESET PASSWORD</span></button>
+                                    </div>
+                                    
+                                </fieldset>
                             </form>
                             </div>
                         </div>

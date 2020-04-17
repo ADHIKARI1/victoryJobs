@@ -50,7 +50,6 @@ class User_model extends CI_Model
 			return $type;
 		else
 			return 0;
-
 	}
 
 	public function is_email_unique($email)
@@ -61,6 +60,42 @@ class User_model extends CI_Model
 			return true;
 		else
 			return false;
+	}
+
+	public function user_data($email)
+	{
+		try {
+			$result = $this->db->get_where('usr_user', array('user_email' => $email));
+			return $result->row_array();
+		} catch (Exception $e) {
+			return false;
+		}		
+		/*$token = $result->row()->user_access_token;			
+		if ($token) 
+			return $token;
+		else
+			return 0;*/		
+	}
+
+	public function get_user($id){
+		try {
+			$query = $this->db->get_where('usr_user',array('ref_emp_id'=>$id));
+			return $query->row_array();
+		} catch (Exception $e) {
+			return false;
+		}
+	}
+
+	public function update_password($data)
+	{
+		try {
+
+			$this->db->where('usr_user.ref_emp_id', $data['ref_emp_id']);
+			return $this->db->update('usr_user', $data);
+			
+		} catch (Exception $e) {
+			return false;
+		}
 	}
 
 

@@ -345,6 +345,116 @@ var admCreateProfile = function(){
 	}
 }();
 
+var forgetPassword =  function(){
+	return {
+		init: function(){
+			$('#forgetForm').submit(function(e){
+				e.preventDefault();
+				var data = $('#forgetForm').serialize();
+				$.ajax({
+					type:'POST',
+					dataType:'json',
+					url: BASE_URL+'user/forget',
+					data:data,
+					beforeSend: function() {
+						$('#flashMessage').hide();
+						$('body').css('cursor', 'wait');
+				        $("#btnForgetForm").attr("disabled", true);
+					},
+					success: function(response)
+					{
+						$('body').css('cursor', 'default');
+						$("#btnForgetForm").attr("disabled", false);
+						$('#lmessage').html(response.lmessage);						
+						if(response.error){	
+							//console.log('error if');						
+							$('#lresponseDiv').removeClass('alert-success').addClass('alert-danger').show();
+						}
+						else
+						{
+							//console.log('success else');
+							$('#lresponseDiv').removeClass('alert-danger').addClass('alert-success').show();
+							$('#forgetForm')[0].reset();														
+						}
+						//console.log(response);					
+					},
+					error: function (response) {
+						//console.log('error error');
+						//console.log(response.lmessage);
+						$('body').css('cursor', 'default');
+						$("#btnForgetForm").attr("disabled", false);
+						if(response.lmessage == undefined)
+							$('#lmessage').html("Something went Wrong!");
+						else
+	                    	$('#lmessage').html(response.lmessage);						
+						$('#lresponseDiv').removeClass('alert-success').addClass('alert-danger').show();
+                	}
+
+				});
+			});	
+			$('#lclearMsg').click(function(){
+				$('#lresponseDiv').hide();
+			});
+		}
+	}
+
+}();
+
+var resetPassword =  function(){
+	return {
+		init:function(){
+			$('#resetPasswordForm').submit(function(e){
+				e.preventDefault();
+				var data = $('#resetPasswordForm').serialize();
+				$.ajax({
+					type:'POST',
+					dataType:'json',
+					url:BASE_URL+'user/reset',
+					data:data,
+					beforeSend: function() {
+						$('#flashMessage').hide();
+					},
+					success:function(response)
+					{
+						$('#lmessage').html(response.lmessage);
+						
+						if(response.error){												
+							$('#lresponseDiv').removeClass('alert-success').addClass('alert-danger').show();							
+						}
+						else
+						{
+							
+							$('#lresponseDiv').removeClass('alert-danger').addClass('alert-success').show();
+							$('#resetPasswordForm')[0].reset();		
+							setTimeout(function(){
+								location.reload();
+								window.location.href = BASE_URL+ "User/index";
+							}, 500);												
+						}
+					},
+					error: function (response) 
+					{						
+						if(response.lmessage == undefined)
+							$('#lmessage').html("Something went Wrong!");
+						else
+	                    	$('#lmessage').html(response.lmessage);						
+						$('#lresponseDiv').removeClass('alert-success').addClass('alert-danger').show();
+						setTimeout(function(){
+								location.reload();
+								window.location.href = BASE_URL+ "User/signin";
+						}, 500);	
+                	}
+
+				});
+			});
+			$('#lclearMsg').click(function(){
+				$('#lresponseDiv').hide();
+			});
+		}
+	}
+
+}();
+
 /*--------- Data Table ------------*/
 
 var LoadDataTables = function () {
@@ -370,4 +480,6 @@ jQuery(document).ready(function(){
 	employerCreateProfile.init();
 	employerUpdateProfile.init();
 	admCreateProfile.init();
+	forgetPassword.init();
+	resetPassword.init();
 });
