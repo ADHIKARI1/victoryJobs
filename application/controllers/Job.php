@@ -30,9 +30,7 @@ class Job extends CI_Controller
         $this->load->view('template/header');        
         $this->load->view('job/index', $data);
         $this->load->view('template/footer');*/
-
-        /*print_r($this->input->get('status'));
-        die();*/
+        
 
         //set params
 		$params = array();
@@ -102,8 +100,10 @@ class Job extends CI_Controller
 
 	public function search()
 	{
-		$data['jobs'] = $this->Job_model->get_search();
+		$data['jobs'] = $this->Job_model->get_search();		
 		$data['categories'] = $this->Job_model->job_count_category();
+		/*var_dump($this->input->get('status'));
+        die();*/
 
 		$this->load->view('template/header');
 		$this->load->view('pages/search');

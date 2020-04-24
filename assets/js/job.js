@@ -244,24 +244,29 @@ var searchButtonClick =  function()
 	return{
 		init: function()
 		{
-			$("#jobSearchForm").submit(function(e){				
-		        /*$("html, body").animate({ 
-			            scrollTop: "500px" 
-		        }, "slow");		*/    
-			});
+			
 
-			/*var status = "<?php echo  $var =  isset($links) ? true : false; ?>";
-			if (status) 
+			function getParameterByName(name, url) {
+			    if (!url) url = window.location.href;
+			    name = name.replace(/[\[\]]/g, '\\$&');
+			    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+			        results = regex.exec(url);
+			    if (!results) return null;
+			    if (!results[2]) return '';
+			    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+			}
+			
+			var status = getParameterByName('status');
+			if (status == 'search') 
 			{
+				//console.log(status);
 				$("html, body").animate({ 
 			            scrollTop: "500px" 
 		        }, "slow");
-			};*/
-			
+			}			
 			
 		}
 	}
-
 }();
 
 jQuery(document).ready(function(){

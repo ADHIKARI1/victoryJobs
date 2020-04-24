@@ -33,7 +33,7 @@
                             <div class="col-md-3 col-sm-3 col-xs-12 nopadding"></div>
                             <div class="col-md-4 col-sm-4 col-xs-12 nopadding">
                                 <div class="form-group">                                    
-                                    <input type="text" class="form-control" name="keyword" id="search" placeholder="Search Keyword" value="">
+                                    <input type="text" class="form-control" name="keyword" id="search" placeholder="Search Keyword" value="" required>
                                     <i class="icon-magnifying-glass"></i>
                                 </div>
                             </div>  
