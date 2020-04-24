@@ -239,6 +239,31 @@ return {
 }
 }();
 
+var searchButtonClick =  function()
+{
+	return{
+		init: function()
+		{
+			$("#jobSearchForm").submit(function(e){				
+		        /*$("html, body").animate({ 
+			            scrollTop: "500px" 
+		        }, "slow");		*/    
+			});
+
+			/*var status = "<?php echo  $var =  isset($links) ? true : false; ?>";
+			if (status) 
+			{
+				$("html, body").animate({ 
+			            scrollTop: "500px" 
+		        }, "slow");
+			};*/
+			
+			
+		}
+	}
+
+}();
+
 jQuery(document).ready(function(){
 	createPost.init();
 	applyJob.init();
@@ -246,4 +271,5 @@ jQuery(document).ready(function(){
 	adminCreatePost.init();
 	LoadEmployerDetailForEdit.init();
 	adminUpdatePost.init();
+	searchButtonClick.init();
 });

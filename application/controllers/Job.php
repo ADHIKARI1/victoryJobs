@@ -31,6 +31,9 @@ class Job extends CI_Controller
         $this->load->view('job/index', $data);
         $this->load->view('template/footer');*/
 
+        /*print_r($this->input->get('status'));
+        die();*/
+
         //set params
 		$params = array();
 		//set records per page
@@ -83,6 +86,19 @@ class Job extends CI_Controller
         $this->load->view('job/index',  $params);
         $this->load->view('template/footer');
 	}
+
+	public function categoryfilter($cat_id)
+	{
+		$data['jobs'] = $this->Job_model->get_category_filter($cat_id);
+		$data['categories'] = $this->Job_model->job_count_category();
+
+		$this->load->view('template/header');
+		$this->load->view('pages/search');
+        $this->load->view('job/index', $data);
+        $this->load->view('template/footer');
+	}
+
+
 
 	public function search()
 	{

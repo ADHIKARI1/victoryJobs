@@ -14,6 +14,13 @@ class Job_model extends CI_Model
 		$this->load->database();
 	}
 
+	public function get_category_filter($cat_id)
+	{
+		$query = $this->db->query("CALL filter_by_category('$cat_id')");
+        mysqli_next_result($this->db->conn_id);
+        return $query->result_array();	
+	}
+
 	public function get_search()
 	{
 		$match = $this->input->post('keyword');
