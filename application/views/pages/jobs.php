@@ -65,7 +65,7 @@
                                     <div class="widget-heading"><span class="title">Categories</span></div>
                                     <ul class="categories-module">
                                         <?php  foreach($categories as $category): ?>
-                                        <li> <a href="<?php echo base_url(); ?>job/category/<?php echo $category['job_cat_id']; ?>"> <?php echo $category['job_cat_name'].' ('.$category['job_count'].')'?></a></li>
+                                        <li> <a href="<?php echo base_url(); ?>job/category/<?php echo $category['job_cat_id']; ?>?status=search"> <?php echo $category['job_cat_name'].' ('.$category['job_count'].')'?></a></li>
                                         <?php endforeach; ?>                                        
                                     </ul>
                                 </div>          

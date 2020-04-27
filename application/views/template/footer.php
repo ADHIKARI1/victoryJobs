@@ -6,13 +6,9 @@
                         <div class="footer_block"> <a href="<?php echo base_url(); ?>" class="f_logo"><img src="<?php echo base_url(); ?>assets/images/logo.png" class="img-responsive" alt="logo"></a>
                             <p>We are a Job Portal and Recruitment and Headhunting agency with a pool of professionals involved in its operations, bringing top notch opportunities for job seekers around the country.</p>                                
                             <div class="social-bar">
-                                <ul>
-                                    <li><a class="fa fa-twitter" href="#"></a></li>
-                                    <li><a class="fa fa-pinterest" href="#"></a></li>
-                                    <li><a class="fa fa-facebook" href="#"></a></li>
-                                    <li><a class="fa fa-behance" href="#"></a></li>
-                                    <li><a class="fa fa-instagram" href="#"></a></li>
-                                    <li><a class="fa fa-linkedin" href="#"></a></li>
+                                <ul>                                   
+                                    <li><a class="fa fa-facebook" href="https://www.facebook.com/victoryjobs.lk/"></a></li>                                    
+                                    <li><a class="fa fa-linkedin" href="https://www.linkedin.com/in/victory-jobs-bab156190/"></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -26,10 +22,9 @@
                             <h4>Hot Links</h4>
                             <ul class="footer-links">
                                 <li> <a href="<?php echo base_url(); ?>">Home</a></li>
-                                <li> <a href="<?php echo base_url(); ?>aboutus">About Us</a></li>
-                                <li> <a href="<?php echo base_url(); ?>">Privacy</a> </li>
+                                <li> <a href="<?php echo base_url(); ?>aboutus">About Us</a></li>                                
                                 <li> <a href="<?php echo base_url(); ?>contact">Contact Us</a> </li>
-                                <li> <a href="<?php echo base_url(); ?>">Term & Conditions</a> </li>
+                                <li> <a href="<?php echo base_url(); ?>policy">Term & Conditions</a> </li>
                             </ul>
                         </div>
                     </div>
@@ -41,7 +36,7 @@
                         <div class="footer_block">
                             <h4>Contact Information</h4>
                             <ul class="personal-info">
-                                    <li><i class="fa fa-map-marker"></i> No 26 8th Ln, Sri Jayawardenepura Kotte 11222.</li>
+                                    <li><i class="fa fa-map-marker"></i> No 150, Templars Road, Mount Lavinia. Sri Lanka.</li>
                                     <li><i class="fa fa-envelope"></i> jobs@victoryinformation.lk</li>
                                     <li><i class="fa fa-phone"></i> (0094)+ 76 22 20 858 </li>
                                     <li><i class="fa fa-clock-o"></i> Always</li>
@@ -61,7 +56,7 @@
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <p>Copyright ©2019 -  All rights Reserved. Made By <a href="http://www.victoryinformation.lk/"> Victory Information </a></p>
                                         </div>
-                                        <div class="col-md-12 col-sm-12 col-xs-12 hidden-xs hidden-sm " align="center">
+                                        <!--<div class="col-md-12 col-sm-12 col-xs-12 hidden-xs hidden-sm " align="center">
                                             <ul class="footer-menu">
                                                 <li>
                                                     <a href="#">Jobs in Western </a>
@@ -90,7 +85,7 @@
                                                 </li>
                                                 
                                             </ul>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>

@@ -55,6 +55,7 @@ $route['job/category/(:any)'] = 'job/categoryfilter/$1';
 $route['default_controller'] = 'Pages/view';
 $route['contact'] = 'Pages/view/contact';
 $route['aboutus'] = 'Pages/view/aboutus';
+$route['policy'] = 'Pages/view/policy';
 $route['jobs/(:num)'] = 'job';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

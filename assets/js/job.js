@@ -244,7 +244,6 @@ var searchButtonClick =  function()
 	return{
 		init: function()
 		{
-			
 
 			function getParameterByName(name, url) {
 			    if (!url) url = window.location.href;
@@ -274,6 +273,7 @@ jQuery(document).ready(function(){
 	applyJob.init();
 	LoadEmployerDetail.init();
 	adminCreatePost.init();
+	
 	LoadEmployerDetailForEdit.init();
 	adminUpdatePost.init();
 	searchButtonClick.init();
