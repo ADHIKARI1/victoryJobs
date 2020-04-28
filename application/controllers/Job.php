@@ -78,11 +78,17 @@ class Job extends CI_Controller
              
             // build paging links
             $params['links'] = $this->pagination->create_links();
+
+            $this->load->view('template/header');        
+	        $this->load->view('job/index',  $params);
+	        $this->load->view('template/footer');
+        }
+        else
+        {
+        	redirect('/');
         }
          
-        $this->load->view('template/header');        
-        $this->load->view('job/index',  $params);
-        $this->load->view('template/footer');
+        
 	}
 
 	public function categoryfilter($cat_id)
