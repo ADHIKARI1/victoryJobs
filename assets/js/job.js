@@ -10,8 +10,14 @@ return {
 					dataType:'json',
 					processData: false,
         			contentType: false,
-					url: BASE_URL + "job/create",					
-					success: function(response){					
+					url: BASE_URL + "job/create",	
+					beforeSend: function() {				       
+				       $('body').css('cursor', 'wait');
+				       $("#jobPostBtn").attr("disabled", true);
+				   },							
+					success: function(response){	
+						$('body').css('cursor', 'default');
+				       	$("#jobPostBtn").attr("disabled", false);				
 						$('#message').html(response.message);
 						if(response.error)
 						{
@@ -22,6 +28,9 @@ return {
 							$('#responseDiv').removeClass('alert-danger').addClass('alert-success').show();
 							$('#post-job-form')[0].reset();
 						}
+						$("html, body").animate({ 
+					            scrollTop: "100px" 
+				        }, "slow");
 					}
 				});
 		});

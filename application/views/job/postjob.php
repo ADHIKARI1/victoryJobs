@@ -95,8 +95,8 @@
                                 </div> 
                                 <div class="col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <label>No of Vacancies  <span class="required">*</span></label>
-                                                <input name="no-of-vacancy" type="number" placeholder="Vacancies" class="form-control" required>
+                                                <label>No of Vacancies(keep '0' for 1 or more)  <span class="required">*</span></label>
+                                                <input name="no-of-vacancy" type="number" placeholder="Vacancies" value="0" class="form-control" required>
                                             </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
@@ -163,7 +163,7 @@
                                 <div class="col-md-12 col-sm-12">
                                             <div class="form-group">
                                                 <label>Job Description <span class="required">*</span></label>
-                                                <textarea name="description" cols="6" rows="8" placeholder="" class="form-control" required></textarea>
+                                                <textarea name="description" cols="6" rows="8" placeholder="" class="form-control"></textarea>
                                             </div>
                                 </div> 
                                 <div class="col-md-6 col-sm-12">
@@ -175,7 +175,7 @@
                                 <div class="clearfix"></div>          
                                                        
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <button   class="btn btn-default pull-right">Publish Job <i class="fa fa-angle-right"></i></button>
+                                    <button id="jobPostBtn"   class="btn btn-default pull-right">Publish Job <i class="fa fa-angle-right"></i></button>
                                 </div>
                             </form>
                         </div>

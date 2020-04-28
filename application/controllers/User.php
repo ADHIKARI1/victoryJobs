@@ -60,8 +60,8 @@ class User extends CI_Controller
 	public function login()
 	{
 		$output = array('error' => false);
-		$this->form_validation->set_rules('lemail', 'E-Mail', 'trim|required|valid_email');
-		$this->form_validation->set_rules('lpassword', 'Password', 'trim|required|min_length[7]');
+		$this->form_validation->set_rules('lemail', 'E-Mail', 'required|trim|xss_clean|valid_email');
+		$this->form_validation->set_rules('lpassword', 'Password', 'required|trim|xss_clean');
 		if ($this->form_validation->run() == false) {
 			$output['error'] = true;
 			$output['lmessage'] = validation_errors();
@@ -239,7 +239,7 @@ class User extends CI_Controller
 		}
 		else
 		{
-			$this->session->set_flashdata('message', 'something went wrong!.');
+			$this->session->set_flashdata('message', 'Something went wrong!.');
 			redirect('user/signin');
 		}
 

@@ -288,28 +288,28 @@ class Candidate extends CI_Controller
 				$user['password'] = $_POST['password'];
 				$user['user_access_token'] = $token;
 				$user['cv'] = $attachment;			
-
-				$query_user = $this->Candidate_model->create_user($user);
-				$status = $this->mail($_POST['email'], $_POST['password'], $ref_id, $token);
-
-				if ($query_user) 
+				
+				$output['message'] = 'Please Wait Untill sending Activation Code..';
+				$status = $this->mail($_POST['email'], $_POST['password'], $ref_id, $token);				
+				if ($status) 
 				{
-					$output['message'] = 'Please Wait Untill sending Activation Code..';
-					if ($status) 
-					{
-						$output['message'] = 'Activation code sent to email, Please verify email!';
-					}
+					$query_user = $this->Candidate_model->create_user($user);
+					if ($query_user) 
+					{						
+						$output['message'] = 'Activation code sent to email, Please verify email!';						
+					}			
 					else
 					{
 						$output['error'] = true;
-						$output['message'] = 'something went wrong!';
+						$output['message'] = 'Registration Failed!, something went wrong!';
 					}
-				}			
+				}
 				else
 				{
 					$output['error'] = true;
-					$output['message'] = 'Registration Failed!';
+					$output['message'] = 'something went wrong!';
 				}
+				
 			}
 		}
 		echo json_encode($output);	

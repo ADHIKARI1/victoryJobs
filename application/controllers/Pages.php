@@ -41,7 +41,7 @@ class Pages extends CI_Controller
 		if ($this->form_validation->run() == false) 
 		{
 			$this->session->set_flashdata('message', validation_errors());
-            redirect('contact');
+            //redirect('contact');
 		}
 		else
 		{
@@ -62,6 +62,7 @@ class Pages extends CI_Controller
 			}
 		}		
 	}
+
 
 	private function contactus_email($name, $email, $phone, $subject, $message)
 	{

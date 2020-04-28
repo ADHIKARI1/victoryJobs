@@ -86,8 +86,7 @@ class Job extends CI_Controller
         else
         {
         	redirect('/');
-        }
-         
+        }         
         
 	}
 
@@ -382,20 +381,74 @@ class Job extends CI_Controller
 				$job['payment_image'] = $payment;
 				$job['post_salary'] = $_POST['salary'];				
 				$job['is_intern'] = isset($_POST['intern']) ? $_POST['intern'] : 0;	
-				$query_post = $this->Job_model->create_post($job);				
 
-				if ($query_post) 
+				$org = $this->Employer_model->get_user($user_id);
+				$ismailed = $this->jobpost_mail($job['post_title'], $org['user_email']);
+				if($ismailed)
 				{
-					$output['message'] = 'Job Post Created Successfully..';					
-				}			
+					$query_post = $this->Job_model->create_post($job);
+					if ($query_post) 
+					{
+						$output['message'] = 'Job Post Created Successfully..';					
+					}			
+					else
+					{
+						$output['error'] = true;
+						$output['message'] = 'Job Post Saving Failed, Something went Wrong!';
+					}
+				}
 				else
 				{
 					$output['error'] = true;
-					$output['message'] = 'Job Post Saving Failed, Something went Wrong!';
-				}
+					$output['message'] = 'Something went Wrong!';
+				}				
 			}
 		}
 		echo json_encode($output);	
+	}
+
+	private function jobpost_mail($title, $org_email)
+	{
+		//set up email
+			$config = array(
+		  		'protocol' => 'smtp',
+		  		'smtp_host' => 'ssl://smtp.googlemail.com',
+		  		'smtp_port' => 465,
+		  		'smtp_user' => 'jobs@victoryJobs.lk', 
+		  		'smtp_pass' => 'Victory@123', 
+		  		'mailtype' => 'html',
+		  		'charset' => 'iso-8859-1',
+		  		'wordwrap' => TRUE
+			);
+
+			$message = 	"
+						<html>
+						<head>
+							<title>Job Posted Successfully.</title>
+						</head>
+						<body>
+							<h2>Hello,</h2>						
+							<p>Your vacancy as the positin of ".$title." . has been published.</p>	
+							<h4>Visit <a href='".base_url()."'>VictoryJobs.LK</a></h4>						
+							<br>														
+							<h5>Best Regards</h5>
+							<p>victoryJobs-Team</p>							
+						</body>
+						</html>
+						";
+
+			$this->load->library('email', $config);
+		    $this->email->set_newline("\r\n");
+		    $this->email->from($config['smtp_user'], 'noreply@victoryJobs.com');
+		    $this->email->to($org_email);
+		    $this->email->subject('Your job post is now live on victoryJobs.lk');
+		    $this->email->message($message);		    
+
+		    //sending email
+		    if ($this->email->send())
+		    	return true;
+		    else
+		    	return false;
 	}
 
 
