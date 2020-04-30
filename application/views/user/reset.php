@@ -44,6 +44,7 @@
                                         <label>Password: <span class="required">*</span></label>
                                         <input name="password" placeholder="" class="form-control" type="password" required>
                                         <input type="hidden"  name="ref_emp_id"  value= "<?php echo $ref_id; ?>">
+                                        <input type="hidden"  name="code"  value= "<?php echo $code; ?>">
                                     </div>      
                                      <div class="form-group">
                                         <label>Retype Password: <span class="required">*</span></label>

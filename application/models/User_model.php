@@ -98,6 +98,36 @@ class User_model extends CI_Model
 		}
 	}
 
+	public function get_changelog($id, $code)
+	{
+		try {
+			$query = $this->db->get_where('change_log',array('user_id'=>$id,'code' =>$code));
+			return $query->row_array();
+		} catch (Exception $e) {
+			return null;
+		}
+	}
+
+	public function add_changelog($ref_id, $change,  $code, $type = 'password')
+	{
+		try {
+			if ($type == 'password') 
+			{
+				$data = array(
+				'user_id' => $ref_id,				
+				'change' => $change,
+				'code' => $code,
+				'is_password' => 1						
+				);
+				$this->db->insert('change_log', $data);
+				return true;
+			}
+			return false;
+		} catch (Exception $e) {
+			return false;
+		}
+	}
+
 
 }
 

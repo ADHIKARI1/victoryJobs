@@ -87,10 +87,9 @@ class User extends CI_Controller
 			}
 		}
 		echo json_encode($output);	
-
 	}
 
-	public function set_usersdata($ref_id)
+	private function set_usersdata($ref_id)
 	{
 		$type = $this->User_model->get_user_type($ref_id);
 		$user_data = array(
@@ -223,19 +222,31 @@ class User extends CI_Controller
 		$hours = $interval->h + ($interval->days*24);
 		if (($ref_id != "" && $ref_id != null) && ($datetime_string != "" && $datetime_string != null))
 		{ 
-			if ($hours <= 24) 
+			$log = $this->User_model->get_changelog($ref_id, $code);			
+			if($log == null || $log == "")
 			{
-				$data['ref_id'] = $ref_id;
+				if ($hours <= 24) 
+				{
+					$data['ref_id'] = $ref_id;
+					$data['code'] = $code;
 
-				$this->load->view('template/header');
-				$this->load->view('user/reset', $data);
-				$this->load->view('template/footer');
+					$this->load->view('template/header');
+					$this->load->view('user/reset', $data);
+					$this->load->view('template/footer');
+				}
+				else
+				{
+					$this->session->set_flashdata('message', 'The link is already used or expired.');
+					redirect('user/signin');
+				}				
 			}
 			else
 			{
-				$this->session->set_flashdata('message', 'The link is already used or expired.');
+				$this->session->set_flashdata('message', 'The link is already used or expired!');
 				redirect('user/signin');
 			}
+
+			
 		}
 		else
 		{
@@ -275,16 +286,28 @@ class User extends CI_Controller
 			$enc_password = password_hash($_POST['password'], PASSWORD_BCRYPT, $options);
 			$password = $enc_password;
 			$ref_id = $_POST['ref_emp_id'];
+			$code = $_POST['code'];
 			$data = $this->User_model->get_user($ref_id);
-			if ($data != "" && $data != null)
+			if (($data != "" && $data != null) && $code != "")
 			{
 				$user['ref_emp_id'] = $ref_id;
-				$user['user_password'] = $password;
-				$query = $this->User_model->update_password($user);
-				if ($query) 
+				$user['user_password'] = $password;				
+				$log = $this->User_model->add_changelog($ref_id, $password,  $code);
+				if ($log) 
 				{
-					$output['lmessage']= 'Password has been changed successfully!';
-					$this->set_usersdata($ref_id);
+					$query = $this->User_model->update_password($user);
+					if($query)
+					{
+
+						$output['lmessage']= 'Password has been changed successfully!';
+						$this->set_usersdata($ref_id);
+					}
+					else
+					{					
+						$output['error'] = true;
+						$output['lmessage'] = 'Something went wrong..!';
+					}
+					
 				}
 				else
 				{					
