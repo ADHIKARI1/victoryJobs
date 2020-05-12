@@ -34,7 +34,17 @@ var createCandidate = function () {
 							$('#responseDiv').removeClass('alert-danger').addClass('alert-success').show();
 							$('#CandidateRegForm')[0].reset();
 						}
-					}
+					},
+					error: function (response) {						
+						$('body').css('cursor', 'default');
+						$("#regSubmitBtn").attr("disabled", false);
+						if(response.lmessage == undefined)
+							$('#message').html("Something went Wrong!");
+						else
+	                    	$('#message').html(response.lmessage);						
+						$('#responseDiv').removeClass('alert-success').addClass('alert-danger').show();
+                	}
+
 				});
 				
 			});
@@ -231,7 +241,16 @@ var createEmployer = function (){
 							$('#responseDiv').removeClass('alert-danger').addClass('alert-success').show();
 							$('#EmployeeRegForm')[0].reset();
 						}
-					}
+					},
+					error: function (response) {						
+						$('body').css('cursor', 'default');
+						$("#employer-submit").attr("disabled", false);
+						if(response.lmessage == undefined)
+							$('#message').html("Something went Wrong!");
+						else
+	                    	$('#message').html(response.lmessage);						
+						$('#responseDiv').removeClass('alert-success').addClass('alert-danger').show();
+                	}
 				});
 				
 			});

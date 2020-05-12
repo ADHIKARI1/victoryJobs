@@ -5,6 +5,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 class Pages extends CI_Controller
 {
+
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->library('Mailnow');
+	}
 	
 	public function view($page = 'search')
 	{
@@ -66,18 +72,7 @@ class Pages extends CI_Controller
 
 	private function contactus_email($name, $email, $phone, $subject, $message)
 	{
-		//set up email
-			$config = array(
-		  		'protocol' => 'smtp',
-		  		'smtp_host' => 'ssl://smtp.googlemail.com',
-		  		'smtp_port' => 465,
-		  		'smtp_user' => 'jobs@victoryJobs.lk', 
-		  		'smtp_pass' => 'Victory@123', 
-		  		'mailtype' => 'html',
-		  		'charset' => 'iso-8859-1',
-		  		'wordwrap' => TRUE
-			);
-
+		
 			$message = 	"
 						<html>
 						<head>
@@ -96,18 +91,8 @@ class Pages extends CI_Controller
 						</html>
 						";
 
-			$this->load->library('email', $config);
-		    $this->email->set_newline("\r\n");
-		    $this->email->from($config['smtp_user'], 'noreply@victoryJobs.com');
-		    $this->email->to($config['smtp_user']);
-		    $this->email->subject('Contacted  From victoryJobs');
-		    $this->email->message($message);
-
-		    //sending email
-		    if ($this->email->send())
-		    	return true;
-		    else
-		    	return false;
+			
+		    return $this->mailnow->send('jobs@victoryJobs.lk', 'Contacted  From victoryJobs', $message);
 	}
 
 	public function team($i)

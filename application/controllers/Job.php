@@ -9,6 +9,7 @@ class Job extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->library('Mailnow');
 	}
 
 	public function index()
@@ -152,18 +153,7 @@ class Job extends CI_Controller
 	}
 
 	private function mail($post_id, $title, $org_email, $cv)
-	{
-		//set up email
-			$config = array(
-		  		'protocol' => 'smtp',
-		  		'smtp_host' => 'ssl://smtp.googlemail.com',
-		  		'smtp_port' => 465,
-		  		'smtp_user' => 'jobs@victoryJobs.lk', 
-		  		'smtp_pass' => 'Victory@123', 
-		  		'mailtype' => 'html',
-		  		'charset' => 'iso-8859-1',
-		  		'wordwrap' => TRUE
-			);
+	{	
 
 			$message = 	"
 						<html>
@@ -178,21 +168,10 @@ class Job extends CI_Controller
 							<p>victoryJobs-Team</p>							
 						</body>
 						</html>
-						";
+						";	
 
-			$this->load->library('email', $config);
-		    $this->email->set_newline("\r\n");
-		    $this->email->from($config['smtp_user'], 'noreply@victoryJobs.com');
-		    $this->email->to($org_email);
-		    $this->email->subject('victoryJobs - Notification');
-		    $this->email->message($message);
-		    $this->email->attach(base_url().'uploads/cv/'.$cv);
-
-		    //sending email
-		    if ($this->email->send())
-		    	return true;
-		    else
-		    	return false;
+			$path = base_url().'uploads/cv/'.$cv;
+		    return $this->mailnow->send_with_attachment($org_email, 'victoryJobs - Notification', $message, $path);
 	}
 
 	public function applyjob()
@@ -409,18 +388,6 @@ class Job extends CI_Controller
 
 	private function jobpost_mail($title, $org_email)
 	{
-		//set up email
-			$config = array(
-		  		'protocol' => 'smtp',
-		  		'smtp_host' => 'ssl://smtp.googlemail.com',
-		  		'smtp_port' => 465,
-		  		'smtp_user' => 'jobs@victoryJobs.lk', 
-		  		'smtp_pass' => 'Victory@123', 
-		  		'mailtype' => 'html',
-		  		'charset' => 'iso-8859-1',
-		  		'wordwrap' => TRUE
-			);
-
 			$message = 	"
 						<html>
 						<head>
@@ -437,18 +404,7 @@ class Job extends CI_Controller
 						</html>
 						";
 
-			$this->load->library('email', $config);
-		    $this->email->set_newline("\r\n");
-		    $this->email->from($config['smtp_user'], 'noreply@victoryJobs.com');
-		    $this->email->to($org_email);
-		    $this->email->subject('Your job post is now live on victoryJobs.lk');
-		    $this->email->message($message);		    
-
-		    //sending email
-		    if ($this->email->send())
-		    	return true;
-		    else
-		    	return false;
+		    return $this->mailnow->send($org_email, 'Your job post is now live on victoryJobs.lk', $message);
 	}
 
 

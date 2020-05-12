@@ -7,6 +7,7 @@ class Candidate extends CI_Controller
 {	
 	function __construct(){
 		parent::__construct();
+		$this->load->library('Mailnow');
 	}
 
 	public function profile()	
@@ -46,18 +47,6 @@ class Candidate extends CI_Controller
 
 	private function mail($email, $password, $id, $code)
 	{
-		//set up email
-			$config = array(
-		  		'protocol' => 'smtp',
-		  		'smtp_host' => 'ssl://smtp.googlemail.com',
-		  		'smtp_port' => 465,
-		  		'smtp_user' => 'jobs@victoryJobs.lk', 
-		  		'smtp_pass' => 'Victory@123', 
-		  		'mailtype' => 'html',
-		  		'charset' => 'iso-8859-1',
-		  		'wordwrap' => TRUE
-			);
-
 			$message = 	"<html>
 						<head>
 							<title>Verification Code</title>
@@ -76,18 +65,7 @@ class Candidate extends CI_Controller
 						</html>
 						";
 
-			$this->load->library('email', $config);
-		    $this->email->set_newline("\r\n");
-		    $this->email->from($config['smtp_user'], 'noreply@victoryJobs.com');
-		    $this->email->to($email);
-		    $this->email->subject('Signup Verification Email');
-		    $this->email->message($message);
-
-		    //sending email
-		    if ($this->email->send())
-		    	return true;
-		    else
-		    	return false;
+		    return $this->mailnow->send($email, 'Signup Verification Email', $message);
 	}	
 
 	public function activate()
