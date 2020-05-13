@@ -120,14 +120,22 @@ class Job extends CI_Controller
 	public function viewjob($id)
 	{			
 		$data['details'] = $this->Job_model->get_post_by_id($id);
-		if($this->session->userdata('userid_mko789') !== null && $this->session->userdata('userid_mko789') != "")
+		if($data['details'] != NULL && $data['details'] != '')
 		{
-			$user = $this->session->userdata('userid_mko789');			
-			$data['user'] = $this->Candidate_model->get_user_basic_detail($user);
+			if($this->session->userdata('userid_mko789') !== null && $this->session->userdata('userid_mko789') != "")
+			{
+				$user = $this->session->userdata('userid_mko789');			
+				$data['user'] = $this->Candidate_model->get_user_basic_detail($user);
+			}
+			$this->load->view('template/header');
+			$this->load->view('job/viewjob', $data);
+			$this->load->view('template/footer');	
 		}
-		$this->load->view('template/header');
-		$this->load->view('job/viewjob', $data);
-		$this->load->view('template/footer');					
+		else
+		{
+			redirect('404');
+		}
+						
 	}
 
 	public function postjob()

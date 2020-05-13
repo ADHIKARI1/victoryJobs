@@ -11,6 +11,13 @@ class Pages extends CI_Controller
 		parent::__construct();
 		$this->load->library('Mailnow');
 	}
+
+	public function index()
+	{
+		$this->load->view('template/header');
+		$this->load->view('pages/404');			
+		$this->load->view('template/footer');
+	}
 	
 	public function view($page = 'search')
 	{
